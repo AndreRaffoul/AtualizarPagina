@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Um site de exemplo do modulo de CSS">
+    <meta name="keywords" content="Agencia Digital, CSS, HTML">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/responsivo.css">
+    <link rel="stylesheet" href="css/produtos.css">
+    <link rel="stylesheet" href="css/envio.css">
+    <title>Aline Beauty</title>
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><h1>Aline Beauty</h1></a>
+        </div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="sobre.html">Sobre nós</a>
+            <a id="botao" href="contato.html">Contato</a>
+        </div>
+    </nav>
+
+    <main class="entrega-container">
+        <div class="entrega">
+            <h2>Informações de Entrega</h2>
+            <form id="form-entrega">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" required>
+
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" required>
+
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" required>
+
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" required>
+
+                <a href="index.html">Finalizar Compra</a>
+            </form>
+        </div>
+    </main>
+     
+    <footer>
+        <div class="logo-rodape">
+            <h1 class="agencia">Aline Beauty</h1>
+            <p style="color:white">Sua loja favorita de roupas</p>
+        </div>
+        <b style="color:white;">©2024 Aline Beauty. Todos os direitos reservados.</b>
+    </footer>
+    
+</body>
+
+</html>

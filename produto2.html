@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&L Modas</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/responsivo.css">
+    <link rel="stylesheet" href="css/produto.css">
+    <link rel="stylesheet" href="css/detalhe.css">
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><h1>A&L Modas</h1></a>
+        </div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="sobre.html">Sobre nós</a>
+            <a id="botao" href="contato.html">Contato</a>
+        </div>
+    </nav>
+    
+    <!-- Seção do Produto -->
+    <section class="produto-detalhe">
+        <div class="produto-imagem">
+            <img src="img/pink-sweater-front.jpg" alt="Produto">
+        </div>
+        <div class="produto-info">
+            <h2>Nome do Produto</h2>
+            <p class="descricao">Descrição detalhada do produto. Inclui materiais, características especiais, instruções de cuidado, entre outros.</p>
+            <p class="preco">R$ 150,00</p>
+            <div class="opcoes">
+                <div class="tamanho">
+                    <label for="tamanho">Tamanho:</label>
+                    <select id="tamanho" name="tamanho">
+                        <option value="P">P</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                    </select>
+                </div>
+                <div class="cor">
+                    <label for="cor">Cor:</label>
+                    <select id="cor" name="cor">
+                        <option value="azul">Azul</option>
+                        <option value="vermelho">Vermelho</option>
+                        <option value="preto">Preto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="quantidade">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" name="quantidade" min="1" value="1">
+            </div>
+            <a href="envio.html" class="comprar">Comprar</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo-rodape">
+            <h1 class="agencia">A&L Modas</h1>
+            <p style="color:white">Sua loja favorita de roupas</p>
+        </div>
+        <b style="color:white;">©2024 A&L Modas. Todos os direitos reservados.</b>
+    </footer>
+</body>
+</html>

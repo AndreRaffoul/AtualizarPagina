@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contato-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 100vh; 
+    background-color: white; 
+}
+
+.contato {
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+}
+
+.contato h2 {
+    margin-bottom: 20px;
+}
+
+.contato p {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    vertical-align: middle; 
+}
+
+.contato a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contato a:hover {
+    text-decoration: underline;
+}

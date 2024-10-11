@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/responsivo.css">
+    <link rel="stylesheet" href="css/produtos.css">
+    <title>A&L Modas</title>
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><h1>A&L Modas</h1></a>
+        </div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="sobre.html">Sobre nós</a>
+            <a id="botao" href="contato.html">Contato</a>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+
+    <header class="header">
+        <div class="headline">
+            <h2 style="letter-spacing: 5px;">Preços Acessíveis, Qualidade no atendimento e Roupas lindas!</h2>
+            <h2 style="font-size:80px">Loja de Roupas</h2>
+            <p>Nossa Loja fica na Rua das Pacas 04 Quadra 1b Lote 04 Loja 3. CEP: 28.927-503 
+                No asfalto próximo a curva do S e da entrada do Condomínio Gravatá 2,
+                ainda no asfalto.
+            </p>
+            <a href="index.html" class="contact-btn">Produtos</a>
+        </div>
+        <div class="img-headline">
+            <img style="max-width: 80%;" src="img/banner2.png">
+        </div>
+    </header>
+     <!-- Seção de Produtos -->
+     <section class="produtos">
+        <h2>Seção de Produtos</h2>
+        <div class="categorias">
+            <h3>Categorias de Roupas</h3>
+            <div class="categoria-buttons">
+                <button class="categoria-btn" onclick="filterProducts('masculino')">Masculino</button>
+                <button class="categoria-btn" onclick="filterProducts('feminino')">Feminino</button>
+                <button class="categoria-btn" onclick="filterProducts('infantil')">Infantil</button>
+            </div>
+        </div>
+        <div class="lista-produtos">
+            <div class="produto-card masculino">
+                <img src="img/blue-t-shirt.jpg" alt="Produto 1">
+                <h4>Produto 1</h4>
+                <p>Descrição breve do produto 1.</p>
+                <p>R$ 100,00</p>
+                <a href="produto1.html" class="ver-detalhes">Ver Detalhes</a>
+            </div>
+            <div class="produto-card feminino">
+                <img src="img/pink-sweater-front.jpg" alt="Produto 2">
+                <h4>Produto 2</h4>
+                <p>Descrição breve do produto 2.</p>
+                <p>R$ 150,00</p>
+                <a href="produto2.html" class="ver-detalhes">Ver Detalhes</a>
+            </div>
+            <div class="produto-card infantil">
+                <img src="img/infantil1.png" alt="Produto 3" width="100px" height="50px">
+                <h4>Produto 3</h4>
+                <p>Descrição breve do produto 3.</p>
+                <p>R$ 200,00</p>
+                <a href="produto3.html" class="ver-detalhes">Ver Detalhes</a>
+            </div>
+            <div class="produto-card feminino">
+                <img src="img/vestido.png" alt="Produto 4">
+                <h4>Produto 4</h4>
+                <p>Descrição breve do produto 4.</p>
+                <p>R$ 250,00</p>
+                <a href="produto4.html" class="ver-detalhes">Ver Detalhes</a>
+            </div>
+            <div class="produto-card feminino">
+                <img src="img/vestido2.png" alt="Produto 5">
+                <h4>Produto 5</h4>
+                <p>Descrição breve do produto 5.</p>
+                <p>R$ 300,00</p>
+                <a href=produto5.html class="ver-detalhes">Ver Detalhes</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="logo-rodape">
+            <h1 class="agencia">A&L Modas</h1>
+            <p style="color:white">Sua loja de Roupas do Bairro</p>
+        </div>
+        <b style="color:white;">©2024 A&L Modas Todos os direitos reservados.</b>
+    </footer>
+    <script>
+        let lastCategory = '';
+
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.produto-card');
+            
+            if (lastCategory === category) {
+                products.forEach(product => {
+                    product.style.display = 'block';
+                });
+                lastCategory = '';
+            } else {
+                products.forEach(product => {
+                    if (product.classList.contains(category)) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+                lastCategory = category;
+            }
+        }
+    </script>
+</body>
+
+</html>
