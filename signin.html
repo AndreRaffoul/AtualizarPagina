@@ -10,41 +10,60 @@
     />
     <link rel="stylesheet" href="signin.css" />
     <title>Login</title>
+      
+   <style>
+
+      *{
+        box-sizing: border-box;
+      }
+
+      body{
+        width: 100%;
+        height: 100%;
+      }
+
+      form{
+        width: 300px;
+        margin: 200px auto;
+        text-align: center;
+      }
+
+      input{
+        display: block;
+        margin: 10px auto;
+        width: 250px;
+        height: 30px;
+      }
+    </style>
   </head>
-  <body>
-    <div class="container">
-      <div class="card">
-        <h1>Entrar</h1>
+  
+  <body>  
 
-        <div id="msgError"></div>
+    <form>
+      <h1>Login</h1>
+      <input type="text" placeholder="login" id="login">
+      <input type="password" placeholder="senha"  id="senha">
+      <input type="submit" onclick="logar(); return false">
+  </form>
 
-        <div class="label-float">
-          <input type="text" id="usuario" placeholder="" required />
-          <label id="userLabel" for="usuario">Usuario</label>
-        </div>
+  <script>
+      function logar(){
 
-        <div class="label-float">
-          <input type="password" id="senha" paceholder="" required />
-          <label id="senhaLabel" for="senha">Senha</label>
-          <i class="fa fa-eye" aria-hidden="true"></i>
-        </div>
+          var login = document.getElementById('login').value;
+          var senha = document.getElementById('senha').value;
 
-        <div class="justify-center">
-          <button onclick="entrar()">Entrar</button>
-        </div>
+          if(login == "" && senha == ""){
+            alert('Você precisa Digitar seu Usuário e Senha para Entrar.');
+            return;
+          }
+                  
+          if(login == "admin" && senha == "admin"){
+            location.href = "gerente.html";
+          }else{
+            alert('Usuário ou Senha incorretos');
+          }
+      }
+  </script>
 
-        <div class="justify-center">
-          <hr />
-        </div>
-        <p>
-          Não tem uma conta?
-          <a href="signup.html">
-            Cadastre-se
-          </a>
-        </p>
-        </div>
-    </div>
-
-    <script src="signin.js"></script>
-  </body>
+    </body>
 </html>
