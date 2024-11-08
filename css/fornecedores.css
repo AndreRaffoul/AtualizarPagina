@@ -1,14 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 *{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.coluna {
     box-sizing: border-box;
+    display: flex;   
+    flex-direction: column;  
+    justify-content: center;
+    align-items: center;   
+}
+body {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    /* height: 100vh; Altura da tela inteira */
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
 }
 
-.label{
-    font-weight: 100px;
-    font-family: 'Courier New', Courier, monospace;
-    font-style: oblique;
+label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold; /* Alterei para bold para melhor visibilidade */
+    padding: 10px 0;
+    display: block; /* Garantir que o label fique acima do input */
 }
 
-.input{
-    width: 100px;
+input {
+    width: 300px; /* Ajustei o tamanho para ficar mais visível */
+    padding: 10px;
+    margin-bottom: 15px; /* Espaçamento entre campos */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-fornecedores {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos em uma coluna */
+    justify-content: center; /* Opcional: alinha internamente na vertical */
+    align-items: center; /* Mantém labels e inputs alinhados à esquerda */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Largura fixa para um formulário alinhado */
+}
+
+.rodape-fornecedores{
+    width: 100%;
 }
