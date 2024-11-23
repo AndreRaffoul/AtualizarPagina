@@ -1,0 +1,17 @@
+{
+  "workbench.colorCustomizations": {
+      "editor.background": "#242323",
+      "editor.foreground": "#FFFFFF",
+      "editorCursor.foreground": "#FFFFFF",
+      "editor.lineHighlightBackground": "#181717",
+      "editor.selectionBackground": "#3E3D32",
+      "editor.inactiveSelectionBackground": "#3E3D32",
+      "editor.selectionHighlightBackground": "#3E3D32",
+// menu lateral
+      "activityBar.background": "#a401f0",
+      "activityBar.foreground": "#FFFFFF", 
+      "activityBarBadge.background": "#a401f0",
+      "activityBarBadge.foreground": "#FFFFFF",
+},
+    "peacock.color": "#000000"
+}
