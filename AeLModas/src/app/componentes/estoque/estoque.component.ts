@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-estoque',
@@ -8,5 +9,16 @@ import { Component } from '@angular/core';
   styleUrl: './estoque.component.css'
 })
 export class EstoqueComponent {
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      plusSize: [false] // Valor padrão: desmarcado
+    });
+  }
+
+  onSubmit() {
+    console.log('Formulário enviado:', this.form.value);
+  }
 
 }

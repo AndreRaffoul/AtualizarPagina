@@ -3,8 +3,14 @@
   <h1>Cadastro de Estoque</h1>
   <form id="supplier-form">
     <div class="form-group">
-      <label for="name">Roupas</label>
-      <input type="text" id="name" name="name" placeholder="Digite o nome" required>
+      <label for="produto">Produto</label>
+      <input type="text" id="produto" name="produto" placeholder="Digite o Produto" required>
+    </div>
+    <div class="form-group">
+      <label>
+        <input type="checkbox" formControlName="plussize" />
+        Plus Size
+      </label>
     </div>
     <div class="form-group">
       <label for="email">E-mail:</label>
