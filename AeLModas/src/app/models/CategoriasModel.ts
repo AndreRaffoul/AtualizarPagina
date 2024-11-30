@@ -34,3 +34,5 @@ export class CategoriasModel {
         this.descricao = descricao;
     }
 }
+
+// 

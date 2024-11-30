@@ -109,4 +109,5 @@ export class FornecedoresModel {
     addCategoria(categoria: CategoriasModel) {
         this.CategoriasModel.push(categoria);
     }
+
 }
