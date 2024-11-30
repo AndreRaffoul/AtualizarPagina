@@ -1,2 +1,5 @@
 ng generate component componentes/estoques
 ng g c "...."
+
+
+npm install bootstrap
