@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { FornecedoresCadasComponent } from './componentes/fornecedores/cadastro/fornecedores-cadas/fornecedores-cadas.component';
 import { FornecedoresListComponent } from './componentes/fornecedores/listagem/fornecedores-list/fornecedores-list.component';
+import { EstoqueComponent } from './componentes/estoque/estoque.component';
 
 export const routes: Routes = [
 
@@ -8,9 +9,9 @@ export const routes: Routes = [
   { path: 'fornecedoresCadas', component: FornecedoresCadasComponent },
 
   // Componente FornecedoresListComponent
-  { path: 'fornecedoresList', component: FornecedoresListComponent }
+  { path: 'fornecedoresList', component: FornecedoresListComponent },
 
-
-// 
+  // Componente FornecedoresListComponent
+  { path: 'estoque', component: EstoqueComponent } 
 
 ];
