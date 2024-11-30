@@ -1,0 +1,2 @@
+ng generate component componentes/estoques
+ng g c "...."

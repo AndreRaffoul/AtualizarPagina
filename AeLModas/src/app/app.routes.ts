@@ -8,9 +8,6 @@ export const routes: Routes = [
   { path: 'fornecedoresCadas', component: FornecedoresCadasComponent },
 
   // Componente FornecedoresListComponent
-  { path: 'fornecedoresList', component: FornecedoresListComponent }
-
-
-// 
+  { path: 'fornecedoresList', component: FornecedoresListComponent },
 
 ];
