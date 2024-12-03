@@ -8,7 +8,7 @@
   
   body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #a3bccc;
     color: #333;
     line-height: 1.6;
   }
@@ -20,13 +20,33 @@
     padding: 20px;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(104, 87, 250, 0.300);
   }
   
   h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #444;
+    color: #210c7c;
+    font-size: 45px;
+    font-style: bold;
+  }
+
+  .div-plusSize {
+    display:flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .plusSize {
+    margin-right: 10px;
+    width: 5em;
+  }
+
+  .checkbox {
+    display: flex;
+    justify-content:flex-start;
+    width: 20px;
+    height: 20px;
   }
   
   /* Estilização dos Grupos do Formulário */
@@ -38,6 +58,7 @@
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #210c7c;
   }
   
   input, select {
@@ -45,7 +66,7 @@
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 7px;
   }
   
   input:focus, select:focus {
@@ -124,6 +145,7 @@
   
     h1 {
       font-size: 22px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
   
     button {
@@ -155,11 +177,5 @@
     font-weight: bold;
     cursor: pointer;
   }
-
-
-  
-
-
-  
 }
   
