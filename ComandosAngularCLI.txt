@@ -1,2 +1,4 @@
 ng generate component componentes/estoques
 ng g c "...."
+
+criando arquivo *.draw
