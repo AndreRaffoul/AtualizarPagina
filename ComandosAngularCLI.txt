@@ -2,3 +2,7 @@ ng generate component componentes/estoques
 ng g c "...."
 
 criando arquivo *.draw
+ng g c componentes/estoque/listagem/estoqueList.component
+
+- Criando um projeto java para backend
+https://start.spring.io/

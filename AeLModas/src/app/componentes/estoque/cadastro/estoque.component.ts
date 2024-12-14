@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { EstoqueListComponent } from '../listagem/estoque-list.component';
 
 @Component({
   selector: 'app-estoque',
   standalone: true,
-  imports: [],
+  imports: [EstoqueListComponent],
   templateUrl: './estoque.component.html',
   styleUrl: './estoque.component.css'
 })
