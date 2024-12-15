@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class EstoqueServService {
 
-  urlService: string = 'http://localhost:3000/estoque';
+  urlService: string = 'http://localhost:8080/buscar';
 
   constructor(
     private http: HttpClient
