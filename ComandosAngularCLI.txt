@@ -1,6 +1,8 @@
 ng generate component componentes/estoques
 ng g c "...."
 
-ng serve
+criando arquivo *.draw
+ng g c componentes/estoque/listagem/estoqueList.component
 
-npm install bootstrap
+- Criando um projeto java para backend
+https://start.spring.io/

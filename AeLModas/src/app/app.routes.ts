@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { EstoqueComponent } from './componentes/estoque/estoque.component';
+import { EstoqueComponent } from './componentes/estoque/cadastro/estoque.component';
 import { FornecedoresCadasComponent } from './componentes/fornecedores/cadastro/fornecedores-cadas/fornecedores-cadas.component';
 import { FornecedoresListComponent } from './componentes/fornecedores/listagem/fornecedores-list/fornecedores-list.component';
 
@@ -12,6 +12,6 @@ export const routes: Routes = [
   { path: 'fornecedoresList', component: FornecedoresListComponent },
 
   // Componente FornecedoresListComponent
-  { path: 'estoque', component: EstoqueComponent } 
+  { path: 'estoque', component: EstoqueComponent }
 
 ];
