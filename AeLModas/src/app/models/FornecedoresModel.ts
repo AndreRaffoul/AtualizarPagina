@@ -1,7 +1,8 @@
-import { CategoriasModel } from './CategoriasModel';
 
-export class FornecedoresModel {
-    id!: number;
+import { IFornecedor } from '../interfaces/IFornecedor.interface';
+
+export class FornecedoresModel implements IFornecedor {
+    id: number;
     nomeFornecedor!: string;
     email!: string;
     telefone!: string;
@@ -10,8 +11,6 @@ export class FornecedoresModel {
     estado!: string;
     cep!: string;
     cnpj!: string;
-
-    CategoriasModel!: CategoriasModel[];
 
     constructor(id: number, nomeFornecedor: string, email: string, telefone: string, endereco: string, cidade: string, estado: string, cep: string, cnpj: string) {
         this.id = id;
@@ -97,17 +96,5 @@ export class FornecedoresModel {
         this.cnpj = cnpj;
     }
 
-    getCategoriasModel() {
-        return this.CategoriasModel;
-    }
-
-    setCategoriasModel(CategoriasModel: []) {
-        this.CategoriasModel = CategoriasModel;
-    }
-
-    // Método para adicionar uma categoria ao fornecedor
-    addCategoria(categoria: CategoriasModel) {
-        this.CategoriasModel.push(categoria);
-    }
 
 }

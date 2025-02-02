@@ -49,6 +49,7 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!--Configuração do PostgreSQL-->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>

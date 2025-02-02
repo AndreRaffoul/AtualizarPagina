@@ -3,10 +3,12 @@ package com.aelmodas.sitelojaaelmodas.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class TecidoModel implements Serializable{
@@ -18,8 +20,9 @@ public class TecidoModel implements Serializable{
 	private Long idTecido;
 	private String nome;
 	
-	@ManyToMany
-	private List<EstoqueModel> estoqueList;	
+	@OneToMany(mappedBy = "tecidoModel")
+	@JsonManagedReference // Evita a serialização circular
+    private List<EstoqueTecido_JOIN> estoqueTecidoList;
 	
 	public TecidoModel() {}
 
@@ -44,16 +47,21 @@ public class TecidoModel implements Serializable{
 		this.nome = nome;
 	}
 
-	public List<EstoqueModel> getEstoqueList() {
-		return estoqueList;
+	public List<EstoqueTecido_JOIN> getEstoqueList() {
+		return estoqueTecidoList;
 	}
 
-	public void setEstoqueList(List<EstoqueModel> estoqueList) {
-		this.estoqueList = estoqueList;
+	public void setEstoqueList(List<EstoqueTecido_JOIN> estoqueList) {
+		this.estoqueTecidoList = estoqueList;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

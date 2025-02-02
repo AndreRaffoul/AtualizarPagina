@@ -1,0 +1,21 @@
+.listagem-forne{
+  /* Centralizar tabela no centro da tela na horizontal */
+  margin: 0 auto;
+  /* Largura da tabela */
+  width: 95%;
+  display: block;
+
+  margin-top: 5%;
+  margin-bottom: 5%;
+
+  /* Centralizar tabela no centro da tela na vertical */
+  position:relative;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+
+  /* Adicionando sombra na tabela */
+  box-shadow: 0 0 10px rgba(40, 41, 43, 0.1);
+
+
+}

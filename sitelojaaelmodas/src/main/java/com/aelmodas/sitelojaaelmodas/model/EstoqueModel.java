@@ -3,10 +3,12 @@ package com.aelmodas.sitelojaaelmodas.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class EstoqueModel implements Serializable{
@@ -23,8 +25,16 @@ public class EstoqueModel implements Serializable{
 	private String dataCompra;
 	private String observacoes;
 
-	@ManyToMany
-	private List<TecidoModel> tecidoList;
+	@OneToMany(mappedBy = "estoqueModel")
+	@JsonManagedReference // Evita a serialização circular
+	private List<EstoqueTecido_JOIN> estoqueTecidoList;
+	
+//	@ManyToMany
+//	@JoinTable(
+//	    name = "tecido_model_estoque_model",
+//	    joinColumns = @JoinColumn(name = "estoque_model_id"),
+//	    inverseJoinColumns = @JoinColumn(name = "tecido_model_id"))
+//	private List<TecidoModel> tecidoList;
 	
 	public EstoqueModel() {}
 	
@@ -95,16 +105,12 @@ public class EstoqueModel implements Serializable{
 		this.observacoes = observacoes;
 	}
 
-	public List<TecidoModel> getTecidoList() {
-		return tecidoList;
+	public List<EstoqueTecido_JOIN> getEstoqueTecidoList() {
+		return estoqueTecidoList;
 	}
 
-	public void setTecidoList(List<TecidoModel> tecidoList) {
-		this.tecidoList = tecidoList;
+	public void setEstoqueTecidoList(List<EstoqueTecido_JOIN> estoqueTecidoList) {
+		this.estoqueTecidoList = estoqueTecidoList;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}	
 
 }
