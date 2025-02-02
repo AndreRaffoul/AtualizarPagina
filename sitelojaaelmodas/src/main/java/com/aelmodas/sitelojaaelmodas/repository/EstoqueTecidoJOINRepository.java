@@ -1,0 +1,13 @@
+package com.aelmodas.sitelojaaelmodas.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.aelmodas.sitelojaaelmodas.model.EstoqueTecido_JOIN;
+
+@Repository
+public interface EstoqueTecidoJOINRepository  extends JpaRepository<EstoqueTecido_JOIN, Long>{
+
+}
+
+

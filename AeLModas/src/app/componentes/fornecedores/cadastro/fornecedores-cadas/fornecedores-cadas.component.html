@@ -1,46 +1,69 @@
-
 <div class="form-container">
-  <h1>Cadastro de Fornecedores A&L Modas</h1>
-  <form id="supplier-form">
-    <div class="form-group">
-      <label for="fornecedor">Fornecedor</label>
-      <input type="text" id="Fornecedor" name="fornecedor" placeholder="Digite o Fornecedor" required>
-    </div>
-
+  <h1>{{ editando ? 'Editar Fornecedor' : 'Cadastro de Fornecedores' }}</h1>
+  <form id="supplier-form" (ngSubmit)="salvarFornecedor()" #eventForm="ngForm" >
+    <div class="form-row">
+      <!-- Criar campo de nome -->
       <div class="form-group">
-      <label for="phone">Nome do Fornecedor</label>
-      <input type="text" id="Nome" name="nome-fornecedor"
-          placeholder="Digite o Nome do Fornecedor" required>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" placeholder="Digite o nome"
+        [(ngModel)]="novoFornecedor.nomeFornecedor" required>
+      </div>
+      <!-- Criar campo de e-mail -->
+      <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Digite o e-mail" 
+        [(ngModel)]="novoFornecedor.email" >
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="address">Endereço</label>
-      <input type="text" id="Endereço" name="endereco-fornecedor" placeholder="Digite o Endereço do Fornecedor" required>
-    </div>
-
-    <div class="form-group">
-      <label for="telefone">Telefone</label>
-      <input type="number" id="telefone-fornecedor" name="telefone-fornecedor" required>
+    <div class="form-row">
+        <!-- Criar campo de endereço -->
+        <div class="form-group">
+          <label for="address">Endereço:</label>
+          <input type="text" id="address" name="address" placeholder="Digite o endereço" 
+          [(ngModel)]="novoFornecedor.endereco">
+        </div>
+      </div>
+      <div class="form-row">
+      <!-- Criar campo de telefone -->
+      <div class="form-group">
+        <label for="phone">Telefone:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Digite o telefone" 
+        [(ngModel)]="novoFornecedor.telefone" >
+      </div>
+      <!-- Criar campo de CNPJ -->
+      <div class="form-group">
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ" 
+        [(ngModel)]="novoFornecedor.cnpj">
+      </div>
+      <!-- Criar campo de cidade -->
+      <div class="form-group">
+        <label for="city">Cidade:</label>
+        <input type="text" id="city" name="city" placeholder="Digite a cidade" 
+        [(ngModel)]="novoFornecedor.cidade">
+      </div>
+      <!-- Criar campo  CEP -->
+      <div class="form-group">
+        <label for="cep">CEP:</label>
+        <input type="text" id="cep" name="cep" placeholder="Digite o CEP" 
+        [(ngModel)]="novoFornecedor.cep">
+      </div>
     </div>
     
-    <div class="form-group">
-      <label for="produto-vendido">Produto Vendido</label>
-      <input type="text" id="produto-vendido" name="produto-vendido" required>
+    <!-- div que alinha os dois botões na horizontal no final da linha -->
+    <div class="form-row form-buttons" style="display: inline-flex; justify-content: center; width: 100%;">
+      <button type="submit">{{ editando ? 'Atualizar' : 'Salvar' }}</button>
+      <button type="button" *ngIf="editando" (click)="resetForm()" class="cancelar"
+      >Cancelar</button>
     </div>
-
-
-    <!--Observações-->
-    <div class="form-group">
-        <label for="areafornecedores">Observações</label>
-        <textarea name="areafornecedores" id="areafornecedores" style="width:100%; height:200px;" >
-        Escreva suas observações.
-        </textarea>
-    </div>
+    
   </form>
 
-<div>
-  <button type="button" class="btn btn-primary">Cadastrar</button>
-  <button type="button" class="btn btn-warning">Deletar</button>
-  <button type="button" class="btn btn-success">Salvar</button>
-  <button type="button" class="btn btn-secondary">Fechar</button>
+  <div class="listagem-forme">
+    <app-fornecedores-list (fornecedorSelecionado)="carregarFornecedorParaEdicao($event)"></app-fornecedores-list>
+  </div>
+
 </div>
+
+

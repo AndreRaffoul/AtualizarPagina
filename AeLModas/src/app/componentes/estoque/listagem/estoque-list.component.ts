@@ -19,14 +19,14 @@ export class EstoqueListComponent implements OnInit {
   
   ngOnInit(): void {
 
-    this.estoqueServService.getListarTodosProdutos().subscribe(
-      (response) => {
-        this.estoque = response;
-      },
-      (error) => {
-        console.log('Erro ao listar os produtos:', error);
-      }
-    );
+    // this.estoqueServService.getListarTodosProdutos().subscribe(
+    //   (response) => {
+    //     this.estoque = response;
+    //   },
+    //   (error) => {
+    //     console.log('Erro ao listar os produtos:', error);
+    //   }
+    // );
 
   } 
 

@@ -1,4 +1,3 @@
-
 /* Reset de Estilos */
 * {
   margin: 0;
@@ -15,12 +14,27 @@ body {
 
 /* Contêiner do Formulário */
 .form-container {
-  max-width: 500px;
+  max-width: 100%;
   margin: 20px auto;
-  padding: 20px;
+  margin-bottom: 5%;
+  margin-top: 2%;
+  padding: 2%;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(104, 87, 250, 0.300);
+}
+
+/* Organizando os Campos na Mesma Linha */
+.form-row {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -49,18 +63,7 @@ h1 {
   height: 20px;
 }
 
-/* Estilização dos Grupos do Formulário */
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #210c7c;
-}
-
+/* Estilização dos Inputs e Select */
 input, select {
   width: 100%;
   padding: 10px;
@@ -75,11 +78,14 @@ input:focus, select:focus {
   box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
 }
 
+
+  
 /* Botão */
-.btn-primary {
-  width: 100%;
-  padding: 10px;
-  background-color: #1c81e6;
+button {
+  margin-top: 3%;
+  width: 450%;
+  padding: 5px;
+  background-color: #007bff;
   color: #fff;
   font-size: 16px;
   border:#007bff;
@@ -106,38 +112,22 @@ input:focus, select:focus {
       background-color: #7e090f;
 }
 
-.btn-success {
-  width: 100%;
-  padding: 10px;
-  background-color: #17ad03;
-  color: #fff;
-  font-size: 16px;
-  border:#067506;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 5px;
+button.cancelar {
+  margin-left: 2%;
+  background-color: #ec4604;
 }
-.btn-success:hover {
-      background-color: #0d5a06;
+
+button.cancelar:hover {
+  background-color: #8f0450;
 }
 
 
-.btn-secondary {
-  width: 100%;
-  padding: 10px;
-  background-color: #595a58;
-  color: #fff;
-  font-size: 16px;
-  border:#343534;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 5px;
+/* Ajuste para a Tabela não sobrepor o Formulário */
+.listagem-forme {
+  margin-top: 10px;
 }
-.btn-secondary:hover {
-      background-color: #303130;
-}
-    
-/* Estilização Responsiva */
+
+/* Ajustes para Responsividade */
 @media (max-width: 768px) {
   .form-container {
     padding: 15px;
@@ -146,6 +136,10 @@ input:focus, select:focus {
   h1 {
     font-size: 22px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  .form-row {
+    flex-direction: column;
   }
 
   button {
@@ -166,15 +160,4 @@ input:focus, select:focus {
     font-size: 12px;
     padding: 8px;
   }
-
-/*formatação do Checkbox plus Size abaixo*/
-.form-group {
-  /*margin-bottom: 10px;*/
-}
-
-label {
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
 }
