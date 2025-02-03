@@ -1,163 +1,242 @@
-/* Reset de Estilos */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #a3bccc;
-  color: #333;
-  line-height: 1.6;
+body{
+    margin:0;
+    font-family: 'Roboto', sans-serif;
 }
 
-/* Contêiner do Formulário */
-.form-container {
-  max-width: 100%;
-  margin: 20px auto;
-  margin-bottom: 5%;
-  margin-top: 2%;
-  padding: 2%;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(104, 87, 250, 0.300);
+.navbar{
+    display: flex;
+    flex-flow: row wrap;
+    height: 100px;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    position:fixed;
+    width: 100%;
 }
 
-/* Organizando os Campos na Mesma Linha */
-.form-row {
-  display: flex;
-  gap: 15px;
-  justify-content: space-between;
+.logo{
+    flex:20%;
+    margin-left:10%;
+    text-align: left;
 }
 
-.form-group {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.logo h1{
+    font-family: 'Lobster', cursive;
+    color:#180F4A;
+    font-size:50px;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #210c7c;
-  font-size: 45px;
-  font-style: bold;
+.menu{
+    flex:70%;
+    text-align:right;
+    padding:20px;
 }
 
-.div-plusSize {
-  display:flex;
-  align-items: center;
-  margin-bottom: 10px;
+.menu a{
+    color:#180F4A;
+    text-decoration: none;
+    font-size:20px;
+    padding:20px 16px; 
 }
 
-.plusSize {
-  margin-right: 10px;
-  width: 5em;
+.menu a:hover{
+    color:#FF2978;
+    border-top:4px solid #180F4A;
 }
 
-.checkbox {
-  display: flex;
-  justify-content:flex-start;
-  width: 20px;
-  height: 20px;
+#botao{
+    background: #180F4A;
+    padding: 10px 25px;
+    color:white;
+    border-radius:5px;
+    margin-right:10%;
+    margin-left:5%;
 }
 
-/* Estilização dos Inputs e Select */
-input, select {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
+#botao:hover{
+    border:none;
+    background: #FF2978;
 }
 
-input:focus, select:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+.header{
+    display: flex;
+    flex-flow:row wrap;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding-top:100px;
 }
 
-
-  
-/* Botão */
-button {
-  margin-top: 3%;
-  width: 450%;
-  padding: 5px;
-  background-color: #007bff;
-  color: #fff;
-  font-size: 16px;
-  border:#007bff;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 5px;
-}
-.btn-primary:hover {
-    background-color: #0056b3;
+.headline{
+    margin-left:10%;
+    flex:40%;
 }
 
-.btn-warning {
-  width: 100%;
-  padding: 10px;
-  background-color: #e61c26;
-  color: #fff;
-  font-size: 16px;
-  border:#7a062d;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 5px;
-}
-.btn-warning:hover {
-      background-color: #7e090f;
+.headline h2{
+    font-weight: 900;
+    font-size:40px;
+    color:#180F4A;
+    padding:0;
+    margin:0;
 }
 
-button.cancelar {
-  margin-left: 2%;
-  background-color: #ec4604;
+.headline p{
+    color:gray;
+    text-align:left;
 }
 
-button.cancelar:hover {
-  background-color: #8f0450;
+.contact-btn{
+    display: inline-block;
+    background: #FF2978;
+    padding:20px;
+    color:white;
+    text-transform: uppercase;
+    border-radius:5px;
+    text-decoration: none;
 }
 
-
-/* Ajuste para a Tabela não sobrepor o Formulário */
-.listagem-forme {
-  margin-top: 10px;
+.contact-btn:hover{
+    background:#180F4A;
 }
 
-/* Ajustes para Responsividade */
-@media (max-width: 768px) {
-  .form-container {
-    padding: 15px;
-  }
-
-  h1 {
-    font-size: 22px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
-
-  .form-row {
-    flex-direction: column;
-  }
-
-  button {
-    font-size: 14px;
-  }
+.img-headline{
+    margin-right:10%;
+    flex:40%;
+    text-align:center;
 }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 18px;
-  }
-
-  input, select {
-    font-size: 14px;
-  }
-
-  button {
-    font-size: 12px;
-    padding: 8px;
-  }
+section{
+    display: inline-block;
+    margin-left:5%;
+    margin-right:5%;
+    padding:5%;
+    text-align: center;
+    
 }
+
+section h2{
+    width:100%;
+    font-size:70px;
+    margin:0;
+    font-family: 'Lobster', cursive;
+    font-weight: bold;
+    color:#180F4A;
+}
+
+.servicos{
+    display: inline-block;
+    margin-top:5%;
+}
+
+.card{
+    display: inline-block;
+    width: 30%;
+    padding:20px;
+    margin:1%;
+    border:1px solid #FF2978;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.texto-oculto{
+    display: none;
+}
+
+.card:hover{
+    background: #FF2978;
+    color:white;
+    padding:40px;
+}
+
+.card:hover img{
+    display: none;
+}
+
+.card:hover .card-text{
+    display:none;
+}
+
+.card:hover .texto-oculto{
+    display:block;
+}
+
+footer{
+    margin-top:10px;
+    height: 400px;
+    background-image:linear-gradient(180deg,#180F4A,#090422,black);
+    text-align:center;
+    border-top:5px solid #FF2978;
+}
+
+.logo-rodape{
+    padding:100px;
+}
+
+.agencia{
+    font-family: 'Lobster', cursive;
+    color:white;
+    font-size:34px;
+}
+
+.about{
+    margin-top: 100px;
+}
+.about p{
+    text-align: justify;
+}
+
+.about li{
+    text-align: justify;
+}
+
+.produtos {
+    text-align: center;
+    margin-top: 150px;
+    align-content: center;
+    padding: 50px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.produtos h2 {
+    font-family: 'Lobster', cursive;
+    font-size: 36px;
+    color: #180F4A;
+}
+
+.categorias {
+    margin-bottom: 20px;
+}
+
+.categorias h3 {
+    font-size: 24px;
+    color: #180F4A;
+}
+
+.categoria-buttons {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.categoria-btn {
+    background-color: #180F4A;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.categoria-btn:hover {
+    background-color: #FF2978;
+}
+
