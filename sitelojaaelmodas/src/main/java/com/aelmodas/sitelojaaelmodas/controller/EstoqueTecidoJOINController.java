@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aelmodas.sitelojaaelmodas.model.EstoqueModel;
-import com.aelmodas.sitelojaaelmodas.model.EstoqueTecido_JOIN;
+import com.aelmodas.sitelojaaelmodas.model.EstoqueTecidoJoin;
 import com.aelmodas.sitelojaaelmodas.service.EstoqueTecidoJOINService;
 
 @RestController
@@ -25,34 +25,36 @@ public class EstoqueTecidoJOINController {
 	@Autowired
 	private EstoqueTecidoJOINService estoqueTecidoJOINService;
 	
-	@PostMapping("/salvar")
-    public ResponseEntity<EstoqueModel> salvar(@RequestBody EstoqueModel estoqueModel) {
-        // Delegar ao Service para salvar o EstoqueModel e os relacionamentos
-        EstoqueModel salvo = estoqueTecidoJOINService.salvarComTecidos(estoqueModel);
+	// 🔹 Método para salvar um único objeto
+    @PostMapping(value = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<EstoqueTecidoJoin> salvar(@RequestBody EstoqueTecidoJoin estoqueTecidoJoin) {
+        EstoqueTecidoJoin salvo = estoqueTecidoJOINService.salvar(estoqueTecidoJoin);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
+    }
+
+    // 🔹 Método para salvar uma lista de objetos
+    @PostMapping(value = "/salvarTodos", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<EstoqueTecidoJoin>> salvarTodos(@RequestBody List<EstoqueTecidoJoin> estoqueTecidoList) {
+        List<EstoqueTecidoJoin> salvos = estoqueTecidoJOINService.salvarTodos(estoqueTecidoList);
+        return ResponseEntity.status(HttpStatus.CREATED).body(salvos);
     }
 	
     @GetMapping("/buscarTodos")
-    public ResponseEntity<List<EstoqueTecido_JOIN>> buscarTodos() {
-        List<EstoqueTecido_JOIN> lista = estoqueTecidoJOINService.buscarTodos();
+    public ResponseEntity<List<EstoqueTecidoJoin>> buscarTodos() {
+        List<EstoqueTecidoJoin> lista = estoqueTecidoJOINService.buscarTodos();
         return ResponseEntity.ok(lista);
     }
 
-    // Consultar por ID
     @GetMapping("/buscarPorID/{id}")
-    public ResponseEntity<EstoqueTecido_JOIN> buscarPorId(@PathVariable Long id) {
-        Optional<EstoqueTecido_JOIN> estoqueTecido = estoqueTecidoJOINService.buscarPorId(id);
-        if (estoqueTecido.isPresent()) {
-            return ResponseEntity.ok(estoqueTecido.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    public ResponseEntity<EstoqueTecidoJoin> buscarPorId(@PathVariable Long id) {
+        Optional<EstoqueTecidoJoin> estoqueTecido = estoqueTecidoJOINService.buscarPorId(id);
+        return estoqueTecido.map(ResponseEntity::ok)
+                            .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // Deletar por ID
     @DeleteMapping("deletarPorID/{id}")
     public ResponseEntity<Void> deletarPorId(@PathVariable Long id) {
-    	estoqueTecidoJOINService.deletarPorId(id);
+        estoqueTecidoJOINService.deletarPorId(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

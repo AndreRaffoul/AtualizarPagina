@@ -1,20 +1,65 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
+import { EstoqueTecidoJoinModel } from '../models/EstoqueTecidoJoin.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstoqueServService {
 
-  urlService: string = 'http://localhost:8080/buscar';
-
+  urlService: string = 'http://localhost:8099/estoque-tecido-join';
+  
   constructor(
     private http: HttpClient
   ) { }
 
-  // Método para listar todos os registros
-  // getListarTodosProdutos(): Observable<any>{
-  //   return this.http.get<any>(this.urlService);
-  // }
+  salvarEstoque(estoque: EstoqueTecidoJoinModel): Observable<EstoqueTecidoJoinModel> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<EstoqueTecidoJoinModel>(`${this.urlService}/salvar`, estoque, { headers })
+    //.pipe( map(response => new EstoqueTecidoJoinModel(response)) );
+  }
+
+  salvarEstoqueTodos(estoque: EstoqueTecidoJoinModel): Observable<EstoqueTecidoJoinModel> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const urlWithHeader = this.http.post(`${this.urlService}`, estoque, { headers }).subscribe();
+    return this.http.post<EstoqueTecidoJoinModel>(`${urlWithHeader}/salvarTodos`, estoque).pipe(
+      map((response) => new EstoqueTecidoJoinModel(response))
+    );
+  }
+
+  atualizarEstoquePorId(estoque: EstoqueTecidoJoinModel): Observable<EstoqueTecidoJoinModel> {
+    return this.http.put<any>(`${this.urlService}/atualizarPorID/${estoque.id}`, estoque).pipe(
+      map((response) => new EstoqueTecidoJoinModel(response))
+    );
+  }
+
+  buscarEstoquePorId(id: number): Observable<EstoqueTecidoJoinModel> {
+    return this.http.get<any>(`${this.urlService}/buscarPorID/${id}`).pipe(
+      map((response) => new EstoqueTecidoJoinModel(response))
+    );
+  }
+
+  //Método para listar todos os registros
+  buscarTodos(): Observable<EstoqueTecidoJoinModel[]> {
+    return this.http.get<any[]>(`${this.urlService}/buscarTodos`).pipe(
+      map((response) => {
+        console.log("Resposta da API:", response);
+        return response.map((item) => new EstoqueTecidoJoinModel(item));
+      })
+    );
+  }
+
+  editarEstoque(id: number): Observable<EstoqueTecidoJoinModel> {
+    return this.http.get<any>(`${this.urlService}/buscarPorID/${id}`).pipe(
+      map((response) => new EstoqueTecidoJoinModel(response))
+    );
+  }
+
+  deletarPorId(id: number): Observable<any> {
+    return this.http.delete(`${this.urlService}/deletarPorID/${id}`);
+  }
 
 }

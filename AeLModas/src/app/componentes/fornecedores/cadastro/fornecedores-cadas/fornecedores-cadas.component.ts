@@ -34,7 +34,7 @@ export class FornecedoresCadasComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  carregarFornecedorParaEdicao(id: number): void {    
+  carregarFornecedorParaEdicao(id: number): void {
     this.fornecedoresServService.buscarFornecedorPorId(id)
     .pipe(timeout(5000))
         .subscribe( (fornecedor) => {
@@ -85,11 +85,9 @@ export class FornecedoresCadasComponent implements OnInit {
         );
     } else {
       this.fornecedoresServService.salvarFornecedor(this.novoFornecedor)
-        .subscribe(
-          () => {
+        .subscribe(() => {
             alert("Fornecedor cadastrado com sucesso!");
-          },
-          (error) => {
+          }, (error) => {
             console.error("Erro ao salvar fornecedor:", error);
           }
         );

@@ -15,7 +15,8 @@ import { RouterModule } from '@angular/router';
     MatMenuModule,
     MatButtonModule],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrl: './menu.component.css',
+  providers: []
 })
 export class MENUComponent {
 

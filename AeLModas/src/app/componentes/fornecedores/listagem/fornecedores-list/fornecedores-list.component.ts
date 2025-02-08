@@ -11,9 +11,9 @@ import { FornecedoresServService } from '../../../../services/fornecedores-serv.
   selector: 'app-fornecedores-list',
   standalone: true,
   imports: [
-    MatListModule, 
-    MatIconModule, 
-    MatTableModule, 
+    MatListModule,
+    MatIconModule,
+    MatTableModule,
     HttpClientModule],
   templateUrl: './fornecedores-list.component.html',
   styleUrl: './fornecedores-list.component.css',
@@ -31,8 +31,7 @@ export class FornecedoresListComponent implements OnInit{
   editando!: boolean;
 
   constructor(
-    private fornecedoresServService: FornecedoresServService,
-    private router: Router
+    private fornecedoresServService: FornecedoresServService
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +47,7 @@ export class FornecedoresListComponent implements OnInit{
   editarFornecedor(id: number): void {
     if(id || id > 0 || id !== null || Number.isNaN(id)) {
       console.log(`ID emitido para edição: ${id}`);
-      this.fornecedorSelecionado.emit(id); 
+      this.fornecedorSelecionado.emit(id);
     } else {
       console.error("Erro: Tentativa de editar um fornecedor sem ID válido.");
       alert("Erro: O fornecedor selecionado não possui um ID válido.");
