@@ -1,107 +1,85 @@
 <div class="form-container">
-  <h1>Cadastro de Estoque</h1>
-  <form id="supplier-form">
-    <div class="form-group mb-2">
-      <label for="produto">Produto</label>
-      <input
-        type="text"
-        id="produto"
-        name="produto"
-        placeholder="Digite o Produto"
-        required
-      />
+  <h1>{{ editando ? 'Editar Estoque' : 'Cadastro de Estoque' }}</h1>
+
+  <form id="stock-form" (ngSubmit)="salvarEstoque()" #eventForm="ngForm">
+    
+    <!-- Primeira linha: Produto -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="produto">Produto</label>
+        <input type="text" id="produto" name="produto" placeholder="Digite o Produto"
+                    [(ngModel)]="novoEstoque.estoqueModel.produto" required />
+        <!-- <input type="text" id="produto" name="produto" placeholder="Digite o Produto"
+          [(ngModel)]="novoEstoque.estoqueModel.produto" required /> -->
+      </div>
     </div>
 
-    <!--  TODO:  colocar este código css no arquivo do componente css  -->
-    <div
-      class="div-plusSize"
-      style="display: flex; align-items: center; margin-bottom: 10px"
-    >
-      <label for="plusSize" style="margin-right: 10px; width: 5em"
-        >Plus Size</label
-      >
-      <input
-        type="checkbox"
-        style="
-          display: flex;
-          justify-content: flex-start;
-          width: 20px;
-          height: 20px;
-        "
-        id="plusSize"
-      />
+    <!-- Segunda linha: Plus Size, Tecido e Data da Compra -->
+    <div class="form-row">
+
+      <div class="form-group">
+        <label for="plusSize">Plus Size</label>
+        <input type="checkbox" id="plusSize" name="plusSize" [(ngModel)]="novoEstoque.estoqueModel.pluzSize" />
+      </div>
+
+      <div class="form-group">
+        <label for="tecido">Tecido</label>
+        <select id="tecido" name="tecido" [(ngModel)]="novoEstoque.tecidoModel.nome" required>
+          <option value="">Selecione um tecido</option>
+          <option value="Dryfit">Dryfit</option>
+          <option value="Moletom">Moletom</option>
+          <option value="Elastano">Elastano</option>
+          <option value="Legging">Legging</option>
+          <option value="Liganete">Liganete</option>
+          <option value="TacTel">TacTel</option>
+          <option value="Duna">Duna</option>
+          <option value="Alfaiataria">Alfaiataria</option>
+          <option value="Linho">Linho</option>
+          <option value="Plissada">Plissada</option>
+          <option value="Suplex">Suplex</option>
+          <option value="Courino">Courino</option>
+        </select>
+      </div>
     </div>
 
-    <select
-      class="form-select form-select-lg mb-2"
-      aria-label="Large select example"
-    >
-      <option selected>Tecido</option>
-      <option value="1">Dryfit</option>
-      <option value="2">Moletom</option>
-      <option value="3">Elastano</option>
-      <option value="4">Legging</option>
-      <option value="5">Legging Jeans</option>
-      <option value="6">Liganete</option>
-      <option value="7">Linha Trançada</option>
-      <option value="8">Renda</option>
-      <option value="9">TacTel</option>
-      <option value="10">Tecido Colméia</option>
-      <option value="11">Duna</option>
-      <option value="12">Viscolinho</option>
-      <option value="13">Alfaiataria</option>
-      <option value="14">Linho</option>
-      <option value="15">Plissada</option>
-      <option value="16">Suplex</option>
-      <option value="17">Courino</option>
-      <option value="18">Chimpa</option>
-      <option value="19">Brim</option>
-      <option value="20">Bengaline</option>
-    </select>
+    <div class="form-row">
+      
+      <div class="form-group">
+        <label for="valor-compra">Valor da Compra</label>
+        <input type="number" id="valor-compra" name="valorCompra" placeholder="Digite o valor da compra"
+                    [(ngModel)]="novoEstoque.estoqueModel.valorCompra" required />
+      </div>
 
-    <div class="form-group mb-2">
-      <label for="phone">Valor de Compra</label>
-      <input
-        type="number"
-        id="valor-compra"
-        name="valor-compra"
-        placeholder="Digite o valor da compra"
-        required
-      />
+      <div class="form-group">
+        <label for="valor-revenda">Valor da Venda</label>
+        <input type="number" id="valor-revenda" name="valorRevenda" placeholder="Digite o valor da revenda"
+                    [(ngModel)]="novoEstoque.estoqueModel.valorRevenda" required />
+      </div>
+      
+      <div class="form-group ">
+        <label for="data-compra">Data da Compra</label>
+        <input type="date" id="data-compra" name="dataCompra"
+          [(ngModel)]="novoEstoque.estoqueModel.dataCompra" required />
+      </div>
+
     </div>
 
-    <div class="form-group mb-2">
-      <label for="address">Valor de Revenda</label>
-      <input
-        type="number"
-        id="valor-revenda"
-        name="valor-revenda"
-        placeholder="Digite o valor da revenda"
-        required
-      />
+    <div class="form-row form-buttons">
+      <!-- 🔹 Mostra "Atualizar" e "Cancelar" apenas se estiver editando -->
+      <div class="button-container" *ngIf="editando">
+        <button type="submit">Atualizar</button>
+        <button type="button" (click)="limparFormulario()" class="cancelar">Cancelar</button>
+      </div>
+
+      <!-- 🔹 Se for novo cadastro, mostra apenas "Salvar" -->
+      <button type="submit" *ngIf="!editando">Salvar</button>
     </div>
 
-    <div class="form-group mb-2">
-      <label for="cnpj">Data da compra</label>
-      <input type="date" id="data-compra" name="data-compra" required />
-    </div>
-
-    <!--Observações-->
-    <div class="form-group ">
-      <label for="area1">Observações</label>
-      <textarea name="area1" id="area1" style="width: 460px; height: 70px">
-            Escreva suas observações.
-        </textarea
-      >
-    </div>
   </form>
 
-  <!-- <div>
-    <button type="button" class="btn btn-primary">Cadastrar</button>
-    <button type="button" class="btn btn-warning">Deletar</button>
-    <button type="button" class="btn btn-success">Salvar</button>
-    <button type="button" class="btn btn-secondary">Fechar</button>
-  </div> -->
-
-  <app-estoque-list></app-estoque-list>
+  <div class="listagem-forme">
+    <app-estoque-list (estoqueSelecionado)="carregarEstoqueParaEdicao($event)"></app-estoque-list>
+  </div>
+  
 </div>
+

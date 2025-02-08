@@ -1,31 +1,72 @@
-<h2>Listagem do Produtos cadastrados no Estoque</h2>
-<!-- Tabela para listagem de 5 itens com o bootstrap -->
+<div class="listagem-forme">
 
-<div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">produto</th>
-        <th scope="col">pluzSize</th>
-        <th scope="col">tecido</th>
-        <th scope="col">valorCompra</th>
-        <th scope="col">valorRevenda</th>
-        <th scope="col">dataCompra</th>
-        <th scope="col">observacoes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-      </tr>
-    </tbody>
+  <table mat-table [dataSource]="dataSource"  style="padding: 2%;">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="produto">
+      <th mat-header-cell *matHeaderCellDef> Produto </th>
+      <td mat-cell *matCellDef="let element"> {{element.estoqueModel.produto}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="pluzSize">
+      <th mat-header-cell *matHeaderCellDef> PluzSize </th>
+      <td mat-cell *matCellDef="let element"> {{element.estoqueModel.pluzSize}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tecido">
+      <th mat-header-cell *matHeaderCellDef> Tecido </th>
+      <td mat-cell *matCellDef="let element"> {{element.tecidoModel.tecido}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valorCompra">
+      <th mat-header-cell *matHeaderCellDef> Valor Compra </th>
+      <td mat-cell *matCellDef="let element"> {{element.estoqueModel.valorCompra}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="valorRevenda">
+      <th mat-header-cell *matHeaderCellDef> Valor Revenda</th>
+      <td mat-cell *matCellDef="let element"> {{element.estoqueModel.valorRevenda}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataCompra">
+      <th mat-header-cell *matHeaderCellDef> Data Compra</th>
+      <td mat-cell *matCellDef="let element"> {{element.estoqueModel.dataCompra}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="observacoes">
+      <th mat-header-cell *matHeaderCellDef> Observações</th>
+      <td mat-cell *matCellDef="let element"> {{element.estoqueModel.observacoes}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef> Editar </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon style="font-size: 27px; color: rgb(0, 119, 255);"
+          (click)="editarEstoque(element)" >
+            edit_note
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deletar">
+      <th mat-header-cell *matHeaderCellDef> Deletar </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon style="font-size: 27px; color: red;"
+          (click)="deletarEstoque(element.id)"
+        >delete</mat-icon>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
 </div>
+
+
+
+

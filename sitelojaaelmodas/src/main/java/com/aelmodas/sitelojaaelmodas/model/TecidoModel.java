@@ -3,65 +3,37 @@ package com.aelmodas.sitelojaaelmodas.model;
 import java.io.Serializable;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class TecidoModel implements Serializable{
-		
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-	private Long idTecido;
-	private String nome;
-	
-	@OneToMany(mappedBy = "tecidoModel")
-	@JsonManagedReference // Evita a serialização circular
-    private List<EstoqueTecido_JOIN> estoqueTecidoList;
-	
-	public TecidoModel() {}
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class TecidoModel implements Serializable {
 
-	public TecidoModel(Long idTecido, String nome) {
-		this.idTecido = idTecido;
-		this.nome = nome;
-	}
+    private static final long serialVersionUID = 1L;
 
-	public Long getIdTecido() {
-		return idTecido;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nome;
 
-	public void setIdTecido(Long idTecido) {
-		this.idTecido = idTecido;
-	}
+    @OneToMany(mappedBy = "tecidoModel", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("tecidoModel") // ✅ Corrigido para evitar erro no relacionamento
+    private List<EstoqueTecidoJoin> estoqueTecidoList;
 
-	public String getNome() {
-		return nome;
-	}
+    public TecidoModel() {}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public List<EstoqueTecido_JOIN> getEstoqueList() {
-		return estoqueTecidoList;
-	}
-
-	public void setEstoqueList(List<EstoqueTecido_JOIN> estoqueList) {
-		this.estoqueTecidoList = estoqueList;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public List<EstoqueTecidoJoin> getEstoqueTecidoList() { return estoqueTecidoList; }
+    public void setEstoqueTecidoList(List<EstoqueTecidoJoin> estoqueTecidoList) { this.estoqueTecidoList = estoqueTecidoList; }
 }
+
