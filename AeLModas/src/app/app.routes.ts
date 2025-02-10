@@ -12,6 +12,9 @@ export const routes: Routes = [
   // Componente FornecedoresCadasComponent
   { path: 'fornecedoresCadas', component: FornecedoresCadasComponent },
 
+  // Rotas de listagem
+  // { path: 'fornecedoresListagem', component: FornecedoresListComponent },
+
   // Componente FornecedoresListComponent
   { path: 'estoqueCadas', component: EstoqueComponent },
 
