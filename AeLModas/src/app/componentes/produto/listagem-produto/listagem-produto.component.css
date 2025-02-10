@@ -1,0 +1,9 @@
+.listagem-produto{
+  margin: 0 auto;
+  width: 95%;
+  display: block;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  position:relative;
+  box-shadow: 0 0 10px rgba(40, 41, 43, 0.1);
+}
