@@ -24,7 +24,31 @@ public class EstoqueService {
 		return estoqueRepo.save(estoque);
 	}
 	
+	// Método para buscar um produto por id.
+	public EstoqueModel buscarProdutoPorId(Long id) {
+		return estoqueRepo.findById(id).orElse(null);
+	}
 	
+	// Método para deletar um produto por id.
+	public EstoqueModel deletarProdutoPorId(Long id) {
+		return estoqueRepo.findById(id).map(estoque -> {
+			estoqueRepo.delete(estoque);
+			return estoque;
+		}).orElse(null);
+	}
 	
+	// Método para atualizar um produto por id.
+	public EstoqueModel atualizarProdutoPorId(Long id, EstoqueModel estoque) {
+		return estoqueRepo.findById(id).map(existingEstoque -> {
+			existingEstoque.setId(estoque.getId());
+			existingEstoque.setProduto(estoque.getProduto());
+			existingEstoque.setPluzSize(estoque.getPluzSize());
+			existingEstoque.setValorCompra(estoque.getValorCompra());
+			existingEstoque.setValorRevenda(estoque.getValorRevenda());
+			existingEstoque.setDataCompra(estoque.getDataCompra());
+			existingEstoque.setObservacoes(estoque.getObservacoes());
+			return estoqueRepo.save(existingEstoque);
+		}).orElse(null);
+	}
 
 }
