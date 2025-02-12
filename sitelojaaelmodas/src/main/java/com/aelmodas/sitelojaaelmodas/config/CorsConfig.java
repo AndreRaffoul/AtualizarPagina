@@ -18,7 +18,7 @@ public class CorsConfig  {
                 .allowedOrigins("http://localhost:4200") // Permite chamadas do frontend Angular
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos liberados
                 .allowedHeaders("*") // Permite todos os headers
-                .allowCredentials(true);
+                .allowCredentials(false);
             }
 		};
 	}

@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aelmodas.sitelojaaelmodas.model.EstoqueTecidoJoin;
+import com.aelmodas.sitelojaaelmodas.model.FornecedorModel;
 import com.aelmodas.sitelojaaelmodas.service.EstoqueTecidoJOINService;
 
 @RestController
@@ -57,5 +59,16 @@ public class EstoqueTecidoJOINController {
         estoqueTecidoJOINService.deletarPorId(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+    
+    @PutMapping("/atualizarEstoquePorId/{id}")
+	public ResponseEntity<EstoqueTecidoJoin> atualizarEstoquePorId(@PathVariable Long id,
+			@RequestBody EstoqueTecidoJoin estoqueTecidoJoin) {
+    	try {
+            EstoqueTecidoJoin atualizado = estoqueTecidoJOINService.atualizarEstoquePorId(id, estoqueTecidoJoin);
+            return ResponseEntity.ok(atualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+	}
 
 }

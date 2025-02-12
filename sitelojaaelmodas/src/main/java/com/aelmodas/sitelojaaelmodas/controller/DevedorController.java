@@ -57,7 +57,6 @@ public class DevedorController {
 	        );
 	    }
 	}
-
 	
 	// Método para atualizar um devedor.
 	@PutMapping("/atualizarDevedor/{id}")

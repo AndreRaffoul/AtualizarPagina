@@ -33,38 +33,6 @@ export class EstoqueComponent implements OnInit {
     this.editando = true;
   }
 
-  // carregarEstoqueParaEdicao(id: number) {
-  //   this.estoqueServService.buscarEstoquePorId(id).subscribe((estoque) => {
-  //     if (estoque) {
-  //       console.log('Estoque carregado para edição:', estoque);
-  //       this.novoEstoque = new EstoqueTecidoJoinModel({
-  //         id: estoque.id,
-  //         estoqueModel: {
-  //           id: estoque.estoqueModel.id,
-  //           produto: estoque.estoqueModel.produto,
-  //           plusSize: estoque.estoqueModel.pluzSize,
-  //           valorCompra: estoque.estoqueModel.valorCompra,
-  //           valorRevenda: estoque.estoqueModel.valorRevenda,
-  //           dataCompra: estoque.estoqueModel.dataCompra,
-  //           observacoes: estoque.estoqueModel.observacoes
-  //         },
-  //         tecidoModel: {
-  //           idTecido: estoque.tecidoModel.id,
-  //           nome: estoque.tecidoModel.nome
-  //         }
-  //       });  
-  //       if (estoque.estoqueModel.dataCompra) {
-  //         this.novoEstoque.estoqueModel.dataCompra = estoque.estoqueModel.dataCompra;
-  //       }  
-  //       this.editando = true;
-  //     } else {
-  //       console.error("Erro: Tentativa de editar um estoque sem ID válido.");
-  //       alert("Erro: O estoque selecionado não possui um ID válido.");
-  //     }
-  //   });
-  // }
-  
-  
   salvarEstoque() {
     console.log("Enviando JSON para o backend:", JSON.stringify(this.novoEstoque, null, 2));
 
@@ -75,7 +43,7 @@ export class EstoqueComponent implements OnInit {
 
     if (this.editando) {
       // 🔹 Atualizar estoque existente
-      this.estoqueServService.atualizarEstoquePorId(this.novoEstoque).subscribe({
+      this.estoqueServService.atualizarEstoquePorId(this.novoEstoque.id, this.novoEstoque).subscribe({
         next: (response) => {
           console.log("Estoque atualizado com sucesso!", response);
           this.limparFormulario();
@@ -132,6 +100,39 @@ export class EstoqueComponent implements OnInit {
 
 }
 
+
+  // carregarEstoqueParaEdicao(id: number) {
+  //   this.estoqueServService.buscarEstoquePorId(id).subscribe((estoque) => {
+  //     if (estoque) {
+  //       console.log('Estoque carregado para edição:', estoque);
+  //       this.novoEstoque = new EstoqueTecidoJoinModel({
+  //         id: estoque.id,
+  //         estoqueModel: {
+  //           id: estoque.estoqueModel.id,
+  //           produto: estoque.estoqueModel.produto,
+  //           plusSize: estoque.estoqueModel.pluzSize,
+  //           valorCompra: estoque.estoqueModel.valorCompra,
+  //           valorRevenda: estoque.estoqueModel.valorRevenda,
+  //           dataCompra: estoque.estoqueModel.dataCompra,
+  //           observacoes: estoque.estoqueModel.observacoes
+  //         },
+  //         tecidoModel: {
+  //           idTecido: estoque.tecidoModel.id,
+  //           nome: estoque.tecidoModel.nome
+  //         }
+  //       });  
+  //       if (estoque.estoqueModel.dataCompra) {
+  //         this.novoEstoque.estoqueModel.dataCompra = estoque.estoqueModel.dataCompra;
+  //       }  
+  //       this.editando = true;
+  //     } else {
+  //       console.error("Erro: Tentativa de editar um estoque sem ID válido.");
+  //       alert("Erro: O estoque selecionado não possui um ID válido.");
+  //     }
+  //   });
+  // }
+  
+  
 
   // limparFormulario() {
   //   this.novoProduto = '';

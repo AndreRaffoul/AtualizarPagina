@@ -30,10 +30,9 @@ export class EstoqueServService {
     );
   }
 
-  atualizarEstoquePorId(estoque: EstoqueTecidoJoinModel): Observable<EstoqueTecidoJoinModel> {
-    return this.http.put<any>(`${this.urlService}/atualizarPorID/${estoque.id}`, estoque).pipe(
-      map((response) => new EstoqueTecidoJoinModel(response))
-    );
+  atualizarEstoquePorId(id: number, estoque: EstoqueTecidoJoinModel): Observable<EstoqueTecidoJoinModel> {
+    return this.http.put<EstoqueTecidoJoinModel>(`${this.urlService}/atualizarEstoquePorId/${id}`, estoque)
+    .pipe( map((response) => new EstoqueTecidoJoinModel(response)) );
   }
 
   buscarEstoquePorId(id: number): Observable<EstoqueTecidoJoinModel> {
@@ -42,7 +41,6 @@ export class EstoqueServService {
     );
   }
 
-  //Método para listar todos os registros
   buscarTodos(): Observable<EstoqueTecidoJoinModel[]> {
     return this.http.get<any[]>(`${this.urlService}/buscarTodos`).pipe(
       map((response) => {

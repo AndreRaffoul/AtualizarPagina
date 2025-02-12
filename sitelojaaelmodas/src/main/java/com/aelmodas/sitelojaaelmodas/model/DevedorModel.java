@@ -52,7 +52,7 @@ public class DevedorModel implements Serializable {
 	@Column(nullable = false)
 	private String statusDivida;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String observacoes;
 	
 	@Column(nullable = false)

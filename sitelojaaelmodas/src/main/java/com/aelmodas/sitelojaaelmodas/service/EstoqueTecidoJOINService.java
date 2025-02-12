@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 
 import com.aelmodas.sitelojaaelmodas.model.EstoqueModel;
 import com.aelmodas.sitelojaaelmodas.model.EstoqueTecidoJoin;
+import com.aelmodas.sitelojaaelmodas.model.FornecedorModel;
 import com.aelmodas.sitelojaaelmodas.model.TecidoModel;
 import com.aelmodas.sitelojaaelmodas.repository.EstoqueRepository;
 import com.aelmodas.sitelojaaelmodas.repository.EstoqueTecidoJOINRepository;
@@ -113,4 +114,32 @@ public class EstoqueTecidoJOINService {
             join.getTecidoModel().setEstoqueTecidoList(null);
         }
     }
+    
+    public EstoqueTecidoJoin atualizarEstoquePorId(Long id, EstoqueTecidoJoin estoqueTecidoJoin) {
+        return estoqueTecidoJOINRepository.findById(id).map(existingEstoqueTecido -> {
+            existingEstoqueTecido.setEstoqueModel(estoqueTecidoJoin.getEstoqueModel());
+            existingEstoqueTecido.setTecidoModel(estoqueTecidoJoin.getTecidoModel());
+            existingEstoqueTecido.setDevedorModel(estoqueTecidoJoin.getDevedorModel());
+            return estoqueTecidoJOINRepository.save(existingEstoqueTecido);
+        }).orElseThrow(() -> new RuntimeException("Erro: EstoqueTecidoJoin ID " + id + " não encontrado!"));
+    }
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
