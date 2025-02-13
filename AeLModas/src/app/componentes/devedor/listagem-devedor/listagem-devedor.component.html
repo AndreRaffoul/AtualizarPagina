@@ -1,1 +1,93 @@
-<p>listagem-devedor works!</p>
+<div class="listagem-forme">
+
+  <table mat-table [dataSource]="dataSource"  style="padding: 2%;">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="nomeDevedor">
+      <th mat-header-cell *matHeaderCellDef> Nome do Devedor </th>
+      <td mat-cell *matCellDef="let element"> {{element.nomeDevedor}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="telefone">
+      <th mat-header-cell *matHeaderCellDef> Telefone </th>
+      <td mat-cell *matCellDef="let element"> {{element.telefone}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="endereco">
+      <th mat-header-cell *matHeaderCellDef> Endereço </th>
+      <td mat-cell *matCellDef="let element"> {{element.endereco}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="cpf">
+      <th mat-header-cell *matHeaderCellDef> CPF </th>
+      <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="divida">
+      <th mat-header-cell *matHeaderCellDef> Dívida </th>
+      <td mat-cell *matCellDef="let element"> {{element.divida}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dataDivida">
+      <th mat-header-cell *matHeaderCellDef> Data da Dívida </th>
+      <td mat-cell *matCellDef="let element"> {{element.dataDivida}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dataVencimento">
+      <th mat-header-cell *matHeaderCellDef> Data de Vencimento </th>
+      <td mat-cell *matCellDef="let element"> {{element.dataVencimento}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="statusDivida">
+      <th mat-header-cell *matHeaderCellDef> Status da Dívida </th>
+      <td mat-cell *matCellDef="let element"> {{element.statusDivida}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="observacoes">
+      <th mat-header-cell *matHeaderCellDef> Observações </th>
+      <td mat-cell *matCellDef="let element"> {{element.observacoes}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="preco">
+      <th mat-header-cell *matHeaderCellDef> Preço </th>
+      <td mat-cell *matCellDef="let element"> {{element.preco}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantidade">
+      <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+      <td mat-cell *matCellDef="let element"> {{element.quantidade}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef> Editar </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon style="font-size: 27px; color: rgb(0, 119, 255);"
+          (click)="editarDevedor(element)" >
+            edit_note
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deletar">
+      <th mat-header-cell *matHeaderCellDef> Deletar </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon style="font-size: 27px; color: red;"
+          (click)="deletarDevedorId(element.id)"
+        >delete</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>

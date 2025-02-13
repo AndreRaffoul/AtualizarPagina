@@ -3,7 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DevedorModel } from '../../../models/DevedorModel.model';
-import { EstoqueTecidoJoinModel } from '../../../models/EstoqueTecidoJoin.model';
 import { DevedorService } from '../../../services/devedor.service';
 import { ListagemDevedorComponent } from '../listagem-devedor/listagem-devedor.component';
 
@@ -54,24 +53,24 @@ export class CadastroDevedorComponent implements OnInit{
       observacoes: '',
       preco: 0,
       quantidade: 0,
-      estoqueTecidoList: [
-        new EstoqueTecidoJoinModel({
-          id: 0,
-          estoqueModel: {
-            id: 0,
-            produto: '',
-            quantidade: 0,
-            preco: 0
-          },
-          tecidoModel: {
-            id: 0,
-            nome: '',
-            cor: '',
-            composicao: '',
-            precoMetro: 0
-          }
-        })
-      ]
+      // estoqueTecidoList: [
+      //   new EstoqueTecidoJoinModel({
+      //     id: 0,
+      //     estoqueModel: {
+      //       id: 0,
+      //       produto: '',
+      //       quantidade: 0,
+      //       preco: 0
+      //     },
+      //     tecidoModel: {
+      //       id: 0,
+      //       nome: '',
+      //       cor: '',
+      //       composicao: '',
+      //       precoMetro: 0
+      //     }
+      //   })
+      // ]
     });
   }
 

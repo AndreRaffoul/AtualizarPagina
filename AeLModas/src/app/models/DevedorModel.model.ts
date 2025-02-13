@@ -1,4 +1,3 @@
-import { EstoqueTecidoJoinModel } from "./EstoqueTecidoJoin.model";
 
   export class DevedorModel {
     id: number;
@@ -14,24 +13,24 @@ import { EstoqueTecidoJoinModel } from "./EstoqueTecidoJoin.model";
     observacoes!: string;
     preco!: number;
     quantidade!: number;
-    estoqueTecidoList: Array<EstoqueTecidoJoinModel> = [
-      new EstoqueTecidoJoinModel({
-        id: 0,
-        estoqueModel: {
-          id: 0,
-          produto: '',
-          quantidade: 0,
-          preco: 0
-        },
-        tecidoModel: {
-          id: 0,
-          nome: '',
-          cor: '',
-          composicao: '',
-          precoMetro: 0
-        }
-      })
-    ];
+    // estoqueTecidoList: Array<EstoqueTecidoJoinModel> = [
+    //   new EstoqueTecidoJoinModel({
+    //     id: 0,
+    //     estoqueModel: {
+    //       id: 0,
+    //       produto: '',
+    //       quantidade: 0,
+    //       preco: 0
+    //     },
+    //     tecidoModel: {
+    //       id: 0,
+    //       nome: '',
+    //       cor: '',
+    //       composicao: '',
+    //       precoMetro: 0
+    //     }
+    //   })
+    // ];
 
     constructor(devedor: DevedorModel) {
       this.id = devedor.id;
@@ -47,7 +46,7 @@ import { EstoqueTecidoJoinModel } from "./EstoqueTecidoJoin.model";
       this.observacoes = devedor.observacoes;
       this.preco = devedor.preco;
       this.quantidade = devedor.quantidade;
-      this.estoqueTecidoList = devedor.estoqueTecidoList;
+      // this.estoqueTecidoList = devedor.estoqueTecidoList;
     }
 
   }

@@ -8,11 +8,15 @@ import { DevedorModel } from '../models/DevedorModel.model';
 })
 export class DevedorService {
 
-  apiDevedorUrl = 'http://localhost:8080/';
+  apiDevedorUrl = 'http://localhost:8099/devedor/';
 
   constructor(
     private http: HttpClient
   ) { }
+  
+  deletarDevedorId(id: number): Observable<any> {
+    return this.http.delete(this.apiDevedorUrl + 'deletarDevedor/' + id);
+  }
 
   getTodosDevedores(): Observable<DevedorModel[]> {
     return this.http.get<DevedorModel[]>(this.apiDevedorUrl + 'buscarTodosDevedores');

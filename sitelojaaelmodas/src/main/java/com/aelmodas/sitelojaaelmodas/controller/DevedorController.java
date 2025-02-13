@@ -35,6 +35,8 @@ public class DevedorController {
 	    LinkedList<DevedorModel> devedores = new LinkedList<>(service.buscarTodosDevedores());
 	    return ResponseEntity.ok(devedores);
 	}
+	
+//  Error no método buscarTodosDevedores	
 //	@GetMapping("/buscarTodosDevedores")
 //	public ResponseEntity<List<DevedorModel>> buscarTodosDevedores() {
 //		return ResponseEntity.ok(service.buscarTodosDevedores());
