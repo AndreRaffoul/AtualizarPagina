@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -26,6 +27,11 @@ public class TecidoModel implements Serializable {
     @OneToMany(mappedBy = "tecidoModel", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("tecidoModel") // ✅ Corrigido para evitar erro no relacionamento
     private List<EstoqueTecidoJoin> estoqueTecidoList;
+    
+    // lista de ProdutoModel
+    @ManyToMany(mappedBy = "tecidoModelList", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("tecidoModelList")
+    private List<ProdutoModel> produtoModelList;
 
     public TecidoModel() {}
 

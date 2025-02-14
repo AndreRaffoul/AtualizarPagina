@@ -1,10 +1,15 @@
 package com.aelmodas.sitelojaaelmodas.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +30,11 @@ public class FornecedorModel implements Serializable{
 	private String estado;
 	private String cep;
 	private String cnpj;
+	
+	// Lista de ProdutoModel
+	@ManyToMany(mappedBy = "forneceModelList", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("forneceModelList")
+    private List<ProdutoModel> produtoModelList;
 	
 	public FornecedorModel() {}
 	

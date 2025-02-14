@@ -36,12 +36,6 @@ public class DevedorController {
 	    return ResponseEntity.ok(devedores);
 	}
 	
-//  Error no método buscarTodosDevedores	
-//	@GetMapping("/buscarTodosDevedores")
-//	public ResponseEntity<List<DevedorModel>> buscarTodosDevedores() {
-//		return ResponseEntity.ok(service.buscarTodosDevedores());
-//	}
-	
 	@GetMapping("/buscarDevedorPorId/{id}")
 	public ResponseEntity<DevedorModel> buscarDevedorPorId(@PathVariable Long id) {
 		return ResponseEntity.ok(service.buscarDevedorPorId(id));
