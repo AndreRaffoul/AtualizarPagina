@@ -31,17 +31,17 @@ export class ListagemDevedorComponent implements OnInit {
     private devedorService: DevedorService
   ) {}
 
-  ngOnInit() { 
-    this.carregarDevedores();
+  ngOnInit() {
+    this.getTodosDevedores();
    }
 
-  carregarDevedores() {
+   getTodosDevedores() {
     this.devedorService.getTodosDevedores().subscribe((devedores) => {
       this.dataSource = devedores;
   } );
   }
 
-  editarDevedor(devedor: DevedorModel): void {
+  putDevedorPorId(devedor: DevedorModel): void {
     console.log(`Devedor emitido para edição:`, devedor);
     this.devedorSelecionado.emit(devedor); // 🔹 Agora emitimos o objeto, e não apenas o id.
   }
@@ -49,7 +49,7 @@ export class ListagemDevedorComponent implements OnInit {
   deletarDevedorId(id: number): void {
     if(confirm("Tem certeza que deseja deletar este devedor?")) {
       this.devedorService.deletarDevedorId(id).subscribe(() => {
-        this.carregarDevedores();
+        this.getTodosDevedores();
       });
     }
   }
