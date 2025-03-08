@@ -9,8 +9,8 @@ import { EstoqueTecidoJoinModel } from '../models/EstoqueTecidoJoin.model';
 })
 export class EstoqueServService {
 
-  urlService: string = 'http://localhost:8099/estoque-tecido-join';
-  
+  urlService: string = 'http://localhost:8099/sitelojaaelmodas/estoque-tecido-join';
+
   constructor(
     private http: HttpClient
   ) { }

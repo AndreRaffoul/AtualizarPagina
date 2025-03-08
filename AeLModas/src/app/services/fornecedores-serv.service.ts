@@ -8,7 +8,7 @@ import { FornecedoresModel } from '../models/FornecedoresModel';
 })
 export class FornecedoresServService {
 
-  private urlFornecedor = 'http://localhost:8099/fornecedor';
+  private urlFornecedor = 'http://localhost:8099/sitelojaaelmodas/fornecedor';
 
   constructor(
     private http: HttpClient
@@ -34,13 +34,13 @@ export class FornecedoresServService {
       console.error("Erro: ID do fornecedor está indefinido!");
       return new Observable<FornecedoresModel>();
     }
-  
+
     const url = `${this.urlFornecedor}/atualizar/${fornecedor.id}`;
     console.log("Chamando API com URL:", url);
-  
+
     return this.http.put<FornecedoresModel>(url, fornecedor);
   }
-  
+
   deletarFornecedorPorId(id: number): Observable<FornecedoresModel> {
    return this.http.delete<FornecedoresModel>(this.urlFornecedor + '/deletar/' + id);
   }
