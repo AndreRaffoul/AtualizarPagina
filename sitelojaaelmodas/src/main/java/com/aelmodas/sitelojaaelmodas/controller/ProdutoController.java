@@ -1,13 +1,16 @@
 package com.aelmodas.sitelojaaelmodas.controller;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +29,23 @@ public class ProdutoController {
 			
 	@Autowired
 	private ProdutoService service;
+	
+	// Método para deletar o produto do banco de dados por id
+	@DeleteMapping("/deletarProdutoPorId/{id}")
+	public ResponseEntity<Map<String, String>> deletarProdutoPorId(@PathVariable Long id) {
+	    Map<String, String> response = new HashMap<>();
+	    try {
+	        service.deletarProdutoPorId(id);
+	        response.put("message", "Produto com ID " + id + " deletado com sucesso.");
+	        return ResponseEntity.ok(response);
+	    } catch (RuntimeException e) {
+	        response.put("error", "Erro: Produto com ID " + id + " não encontrado.");
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+	    } catch (Exception e) {
+	        response.put("error", "Erro interno ao deletar o produto: " + e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+	    }
+	}
 	
 	// Método para atualizar o produto no banco de dados obedecendo a estrutura do json
 	@PutMapping("/atualizarProdutoPorId/{id}")

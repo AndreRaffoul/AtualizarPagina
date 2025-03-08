@@ -5,7 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.aelmodas.sitelojaaelmodas.model.EstoqueModel;
 import com.aelmodas.sitelojaaelmodas.model.FornecedorModel;
@@ -33,8 +37,17 @@ public class ProdutoService {
 	@Autowired
 	private EstoqueRepository estoqueRepository;
 	
+	
+	@Transactional
 	public void deletarProdutoPorId(Long id) {
-		repository.deleteById(id);
+	    if (id == null) {
+	        throw new IllegalArgumentException("O ID do produto não pode ser nulo.");
+	    }
+	    
+	    ProdutoModel produto = repository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Produto com ID " + id + " não encontrado."));
+
+	    repository.delete(produto);
 	}
 	
 	@Transactional

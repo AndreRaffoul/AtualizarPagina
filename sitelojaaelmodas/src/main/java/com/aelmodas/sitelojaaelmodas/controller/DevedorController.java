@@ -28,8 +28,6 @@ public class DevedorController {
 	@Autowired
 	private DevedorService service;
 	
-	// Método para buscar todos os devedores. 
-	// Usando LinkedList para retornar uma lista de devedores.
 	@GetMapping("/buscarTodosDevedores")
 	public ResponseEntity<List<DevedorModel>> buscarTodosDevedores() {
 	    LinkedList<DevedorModel> devedores = new LinkedList<>(service.buscarTodosDevedores());
@@ -41,7 +39,6 @@ public class DevedorController {
 		return ResponseEntity.ok(service.buscarDevedorPorId(id));
 	}
 	
-	// Método para salvar um devedor.
 	@PostMapping("/salvarDevedor")
 	public ResponseEntity<?> salvarDevedor(@RequestBody DevedorModel devedor) {
 	    try {
@@ -54,7 +51,6 @@ public class DevedorController {
 	    }
 	}
 	
-	// Método para atualizar um devedor.
 	@PutMapping("/atualizarDevedor/{id}")
 	public ResponseEntity<DevedorModel> atualizarDevedor(@PathVariable Long id, @RequestBody DevedorModel devedor) {
 	    DevedorModel devedorAtualizado = service.atualizarDevedorPorID(id, devedor);

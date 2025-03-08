@@ -41,5 +41,7 @@ public class TecidoModel implements Serializable {
     public void setNome(String nome) { this.nome = nome; }
     public List<EstoqueTecidoJoin> getEstoqueTecidoList() { return estoqueTecidoList; }
     public void setEstoqueTecidoList(List<EstoqueTecidoJoin> estoqueTecidoList) { this.estoqueTecidoList = estoqueTecidoList; }
+    public List<ProdutoModel> getProdutoModelList() { return produtoModelList; }
+    public void setProdutoModelList(List<ProdutoModel> produtoModelList) { this.produtoModelList = produtoModelList; }
 }
 

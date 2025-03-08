@@ -58,6 +58,14 @@ public class FornecedorModel implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public List<ProdutoModel> getProdutoModelList() {
+		return produtoModelList;
+	}
+	
+	public void setProdutoModelList(List<ProdutoModel> produtoModelList) {
+		this.produtoModelList = produtoModelList;
+	}
 
 	public String getNomeFornecedor() {
 		return nomeFornecedor;
