@@ -1,0 +1,115 @@
+
+/* Reset de Estilos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+.form-container {
+  max-width: 100%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 45%;
+  margin: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.div-plusSize {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Contêiner dos botões */
+.button-container {
+width: 100%;
+display: flex;
+justify-content: center;
+gap: 3%;
+margin-top: 15px;
+}
+
+/* Botões padrão */
+button {
+width: 100%;
+padding: 10px 15px;
+font-size: 16px;
+cursor: pointer;
+border: none;
+border-radius: 5px;
+transition: background 0.3s ease-in-out;
+}
+
+/* Botão principal */
+button {
+background-color: #007bff;
+color: white;
+}
+
+button:hover {
+background-color: #0056b3;
+}
+
+/* Botão cancelar */
+button.cancelar {
+background-color: rgb(235, 78, 5);
+}
+
+button.cancelar:hover {
+background-color: rgb(200, 50, 0);
+}
+
+/* Ajustes para responsividade */
+@media (max-width: 768px) {
+.button-container {
+  flex-direction: column;
+  gap: 10px;
+}
+
+button {
+  width: 100%;
+}
+}
+
+.listagem-forme{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 5%;
+  box-shadow: 0 0 10px rgba(40, 41, 43, 0.1);
+}

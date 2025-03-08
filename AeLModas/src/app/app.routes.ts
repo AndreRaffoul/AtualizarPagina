@@ -6,11 +6,11 @@ import { CadastroProdutoComponent } from './componentes/produto/cadastro-produto
 
 export const routes: Routes = [
 
-  /* Rota da home */
-  // {path: '', component: HOMEComponent, pathMatch: 'full'},
-
   // Componente FornecedoresCadasComponent
   { path: 'fornecedoresCadas', component: FornecedoresCadasComponent },
+
+  // Rotas de listagem
+  // { path: 'fornecedoresListagem', component: FornecedoresListComponent },
 
   // Componente FornecedoresListComponent
   { path: 'estoqueCadas', component: EstoqueComponent },

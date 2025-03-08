@@ -25,13 +25,16 @@ public class EstoqueTecidoJoin implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "estoque_model_id", nullable = false)
-    @JsonIgnoreProperties("estoqueTecidoList") // 🔹 Evita loop infinito na serialização
+    @JsonIgnoreProperties("estoqueTecidoList")
     private EstoqueModel estoqueModel;
 
     @ManyToOne
     @JoinColumn(name = "tecido_model_id", nullable = false)
-    @JsonIgnoreProperties("estoqueTecidoList") // 🔹 Evita loop infinito na serialização
+    @JsonIgnoreProperties("estoqueTecidoList")
     private TecidoModel tecidoModel;
+    
+    @ManyToOne
+    private DevedorModel devedorModel;
 
     public EstoqueTecidoJoin() {}
 
@@ -46,5 +49,7 @@ public class EstoqueTecidoJoin implements Serializable {
     public void setEstoqueModel(EstoqueModel estoqueModel) { this.estoqueModel = estoqueModel; }
     public TecidoModel getTecidoModel() { return tecidoModel; }
     public void setTecidoModel(TecidoModel tecidoModel) { this.tecidoModel = tecidoModel; }
+    public DevedorModel getDevedorModel() { return devedorModel; }
+    public void setDevedorModel(DevedorModel devedorModel) { this.devedorModel = devedorModel; }
 }
 
