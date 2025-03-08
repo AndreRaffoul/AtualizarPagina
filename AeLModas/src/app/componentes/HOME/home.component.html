@@ -1,17 +1,36 @@
 <app-menu></app-menu>
 
-<!-- Centralizar o conteudo na horizontal e na vertical -->
-<div  style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-
-    <div class="text-center">
-        <h1 class="display-1">Bem vindo ao sistema</h1>
-        <app-content></app-content>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="index.html"><h1>A&L Modas</h1></a>
+      <app-content></app-content>
     </div>
+  </nav>
 
+  <header class="header">
+    <div class="headline">
+      <h2 style="letter-spacing: 5px">
+        Preços Acessíveis, Qualidade no atendimento e Roupas lindas!
+      </h2>
+      <h2 style="font-size: 60px">Loja de Roupas</h2>
+      <p>
+        Nossa Loja fica na Rua das Pacas 04 Quadra 1b Lote 04 Loja 3. CEP:
+        28.927-503 No asfalto próximo a curva do S e da entrada do Condomínio
+        Gravatá 2, ainda no asfalto.
+      </p>
+    </div>
+    <div class="img-headline">
+      <img style="max-width: 50%" [src]=" 'assets/' + imagemBanner " alt="banner" />
+    </div>
+  </header>
+
+</body>
+
+<div>
+  <router-outlet />
 </div>
 
-
-
-<div  style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-    <app-footer></app-footer>
+<div>
+  <app-footer></app-footer>
 </div>
