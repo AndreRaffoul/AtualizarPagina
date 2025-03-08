@@ -93,7 +93,7 @@ button.cancelar:hover {
 }
 
 /* Ajustes para Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .form-container {
     padding: 15px;
   }

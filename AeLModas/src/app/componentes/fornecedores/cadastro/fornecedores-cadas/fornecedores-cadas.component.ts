@@ -38,8 +38,7 @@ export class FornecedoresCadasComponent implements OnInit {
     this.fornecedoresServService.buscarFornecedorPorId(id)
     .pipe(timeout(5000))
         .subscribe( (fornecedor) => {
-            if(fornecedor !== null || fornecedor !== undefined ||
-              fornecedor !== null || Number.isNaN(fornecedor) ) {
+            if(fornecedor !== null || fornecedor !== undefined || Number.isNaN(fornecedor) ) {
               console.log('Fornecedor carregado para edição:', fornecedor);
               this.novoFornecedor = new FornecedoresModel(
                 fornecedor.id,

@@ -1,3 +1,124 @@
-<p>Formulário de cadastro para Produtos</p>
+<div class="form-container">
+  <h1>{{ editando ? 'Editar Produto' : 'Cadastro de Produtos' }}</h1>
 
-<app-listagem-produto></app-listagem-produto>
+    <!--Class bootstrap para deixar os campos input fluidos e adaptáveis ao espaço-->
+    <form id="supplier-form" (ngSubmit)="salvarProduto()" #eventForm="ngForm" 
+    class="form-row" style="display: inline-flex; justify-content: center; width: 100%;">
+
+      <!--Reduzir o width do campo nomeProduto usando bootstrap-->
+      <div class="form-group col-md-6 ">
+        <label for="nomeProduto">Nome do Produto</label>
+        <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" [(ngModel)]="novoProduto.nomeProduto" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control" id="descricao" name="descricao" [(ngModel)]="novoProduto.descricao" required>
+      </div>
+
+      <div class="form-row  col-md-6 justify-content-center display-inline-flex">
+        <div class="form-group col-md-2">
+          <label for="categoria">Categoria</label>
+          <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="novoProduto.categoria" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="marca">Marca</label>
+          <input type="text" class="form-control" id="marca" name="marca" [(ngModel)]="novoProduto.marca" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="cor">Cor</label>
+          <input type="text" class="form-control" id="cor" name="cor" [(ngModel)]="novoProduto.cor" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="tamanho">Tamanho</label>
+          <input type="text" class="form-control" id="tamanho" name="tamanho" [(ngModel)]="novoProduto.tamanho" required>
+        </div>
+      </div>
+
+      <div class="form-row  col-md-6 justify-content-center display-inline-flex">
+        <div class="form-group col-md-2">
+          <label for="genero">Gênero</label>
+          <input type="text" class="form-control" id="genero" name="genero" [(ngModel)]="novoProduto.genero" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="tipo">Tipo</label>
+          <input type="text" class="form-control" id="tipo" name="tipo" [(ngModel)]="novoProduto.tipo" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="material">Material</label>
+          <input type="text" class="form-control" id="material" name="material" [(ngModel)]="novoProduto.material" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="quantidade">Quantidade</label>
+          <input type="number" class="form-control" id="quantidade" name="quantidade" [(ngModel)]="novoProduto.quantidade" required>
+        </div>
+      </div>
+      
+      <div class="form-row  col-md-6 justify-content-center display-inline-flex">
+        <div class="form-group col-md-2">
+          <label for="dataCadastro">Data de Cadastro</label>
+          <input type="date" class="form-control" id="dataCadastro" name="dataCadastro" [(ngModel)]="novoProduto.dataCadastro" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="dataVencimento">Data de Vencimento</label>
+          <input type="date" class="form-control" id="dataVencimento" name="dataVencimento" [(ngModel)]="novoProduto.dataVencimento" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="precoCusto">Preço de Custo</label>
+          <input type="number" class="form-control" id="precoCusto" name="precoCusto" [(ngModel)]="novoProduto.precoCusto" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="precoVenda">Preço de Venda</label>
+          <input type="number" class="form-control" id="precoVenda" name="precoVenda" [(ngModel)]="novoProduto.precoVenda" required>
+        </div>
+      </div>
+
+      <div class="form-row  col-md-6 justify-content-center display-inline-flex">
+        <div class="form-group col-md-2">
+          <label for="desconto">Desconto</label>
+          <input type="number" class="form-control" id="desconto" name="desconto" [(ngModel)]="novoProduto.desconto" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="precoPromocao">Preço de Promoção</label>
+          <input type="number" class="form-control" id="precoPromocao" name="precoPromocao" [(ngModel)]="novoProduto.precoPromocao" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="imagem">Imagem</label>
+          <input type="file" class="form-control" id="imagem" name="imagem"
+          [(ngModel)]="novoProduto.imagem" required>
+        </div>
+      </div>
+      
+      <div class="form-row  col-md-12 justify-content-start display-block-flex">
+        <div class="form-group col-md-2">
+          <label for="tecidoModelList">Tecido</label>
+          <input type="text" class="form-control" id="tecidoModelList" name="tecidoModelList"
+          [(ngModel)]="novoProduto.tecidoModelList" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="estoqueModelList">Estoque</label>
+          <input type="text" class="form-control" id="estoqueModelList" name="estoqueModelList"
+          [(ngModel)]="novoProduto.estoqueModelList" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="forneceModelList">Fornecedor</label>
+          <input type="text" class="form-control" id="forneceModelList" name="forneceModelList"
+          [(ngModel)]="novoProduto.forneceModelList" required>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="observacoes">Observações</label>
+          <input type="text" class="form-control" id="observacoes" name="observacoes"
+          [(ngModel)]="novoProduto.observacoes" required>
+        </div>
+      </div>
+    </form>
+
+    <div class="form-row form-buttons" style="justify-content: center; width: 100%;">
+      <button type="submit">{{ editando ? 'Atualizar' : 'Salvar' }}</button>
+      <button type="button" *ngIf="editando" (click)="resetForm()" class="cancelar">Cancelar</button>
+</div>
+
+<app-listagem-produto (produtoSelecionado)="carregarProdutoParaEdicao($event)"></app-listagem-produto>
+
+
+
+
