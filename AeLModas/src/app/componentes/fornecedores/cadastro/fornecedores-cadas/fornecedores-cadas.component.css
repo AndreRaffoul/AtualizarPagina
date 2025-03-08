@@ -41,7 +41,7 @@ body{
     color:#180F4A;
     text-decoration: none;
     font-size:20px;
-    padding:20px 16px; 
+    padding:20px 16px;
 }
 
 .menu a:hover{
@@ -85,9 +85,23 @@ body{
     margin:0;
 }
 
-.headline p{
-    color:gray;
-    text-align:left;
+/* Ajustes para Responsividade */
+@media (max-width: 1024px) {
+  .form-container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  button {
+    font-size: 14px;
+  }
 }
 
 .contact-btn{
@@ -116,7 +130,7 @@ section{
     margin-right:5%;
     padding:5%;
     text-align: center;
-    
+
 }
 
 section h2{

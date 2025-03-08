@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -29,9 +31,18 @@ public class EstoqueModel implements Serializable {
     private LocalDate dataCompra;
     private String observacoes;
 
-    @OneToMany(mappedBy = "estoqueModel", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("estoqueModel") // ✅ Corrigido para evitar erro no relacionamento
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("estoqueModel")
     private List<EstoqueTecidoJoin> estoqueTecidoList;
+    
+    /*
+     * @OneToMany(mappedBy = "tecidoModel", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("tecidoModel") 
+     */
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
+    @JsonIgnoreProperties("estoqueModelList")
+    private ProdutoModel produtoModel;
 
     public EstoqueModel() {}
 

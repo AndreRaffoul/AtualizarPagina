@@ -1,3 +1,95 @@
-<p>Formulário de cadastro de Devedores</p>
+<div class="form-container">
+  <h1>{{ editando ? 'Editar Devedores' : 'Cadastro de Devedores' }}</h1>
+  <form id="stock-form" (ngSubmit)="salvarDevedores()" #eventForm="ngForm">    
+    <div class="form-row">
 
-<app-listagem-devedor></app-listagem-devedor>
+      <div class="form-group">
+        <label for="nomeDevedor">Nome Devedor</label>
+        <input type="text" id="nomeDevedor" name="nomeDevedor" placeholder="Digite o nome devedor"
+                    [(ngModel)]="novoDevedor.nomeDevedor" required />
+      </div>
+    </div>
+    <div class="form-row">
+
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" [(ngModel)]="novoDevedor.email" /></div>
+
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="text" id="telefone" name="telefone" [(ngModel)]="novoDevedor.telefone"  /></div>
+
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco" name="endereco" placeholder="Digite o endereço"
+                    [(ngModel)]="novoDevedor.endereco" required /></div>
+
+      <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" name="cpf" placeholder="Digite o CPF"
+                    [(ngModel)]="novoDevedor.cpf" required /></div>
+
+      <div class="form-group ">
+        <label for="dataDivida">Data Divida</label>
+        <input type="date" id="dataDivida" name="dataDivida"
+          [(ngModel)]="novoDevedor.dataDivida" required /></div>
+
+      <div class="form-group ">
+        <label for="dataVencimento">Data Vencimento</label>
+        <input type="date" id="dataVencimento" name="dataVencimento"
+          [(ngModel)]="novoDevedor.dataVencimento" required /></div>
+
+        <div class="form-group ">
+          <label for="divida">Divida</label>
+          <input type="number" id="divida" name="divida"
+            [(ngModel)]="novoDevedor.divida" required /></div>
+        
+        <div class="form-group ">
+          <label for="observacoes">Observacoes</label>
+          <input type="text" id="observacoes" name="observacoes"
+            [(ngModel)]="novoDevedor.observacoes" required /></div>
+              
+        <div class="form-group">
+          <label for="estoqueTecidoList">Tecido cadastrados no estoque</label>
+          <input type="text" id="plusSize" name="plusSize" [(ngModel)]="novoDevedor"  />
+          <!-- <select id="estoqueTecidoList" name="estoqueTecidoList" [(ngModel)]="novoDevedor" required>
+            <option value="">Selecione um tecido</option>
+            <option value="Dryfit">Dryfit</option>
+            <option value="Moletom">Moletom</option>
+            <option value="Elastano">Elastano</option>
+            <option value="Legging">Legging</option>
+            <option value="Liganete">Liganete</option>
+            <option value="TacTel">TacTel</option>
+            <option value="Duna">Duna</option>
+            <option value="Alfaiataria">Alfaiataria</option>
+            <option value="Linho">Linho</option>
+            <option value="Plissada">Plissada</option>
+            <option value="Suplex">Suplex</option>
+            <option value="Courino">Courino</option>
+          </select> -->
+        </div>
+
+        
+        <div class="form-group ">
+          <label for="statusDivida">Status Divida</label>
+          <input type="checkbox" id="statusDivida" name="statusDivida"
+            [(ngModel)]="novoDevedor.statusDivida" required /></div>
+    </div>
+
+    <!-- div que alinha os dois botões na horizontal no final da linha -->
+    <div class="form-row form-buttons" style="display: inline-flex; justify-content: center; width: 100%;">
+      <button type="submit">{{ editando ? 'Atualizar' : 'Salvar' }}</button>
+      <button type="button" *ngIf="editando" (click)="resetForm()" class="cancelar"
+      >Cancelar</button>
+    </div>
+
+  </form>
+  <div class="listagem-forme">
+    <app-listagem-devedor (devedorSelecionado)="carregarDevedoresParaEdicao($event)"></app-listagem-devedor>
+  </div>  
+</div>
+
+
