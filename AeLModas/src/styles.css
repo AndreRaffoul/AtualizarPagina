@@ -1,2 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Ajuste geral da HOME */
+
+/* Garante que a página ocupe toda a altura da tela */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* O <main> cresce para empurrar o footer quando necessário */
+main {
+  flex: 1; /* Faz o main ocupar todo o espaço disponível */
+  padding-bottom: 20px; /* Evita que o conteúdo fique colado no footer */
+}
+
+/* Ajuste do footer */
+footer {
+  background-image: linear-gradient(180deg, #180F4A, #090422, black);
+  text-align: center;
+  border-top: 5px solid #FF2978;
+  padding: 40px 20px;
+  width: 100%;
+}
