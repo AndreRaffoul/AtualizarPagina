@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 /* Garante que a página ocupe toda a altura disponível */
 html, body {
@@ -12,6 +13,76 @@ html, body {
 main {
   flex: 1;
   padding-bottom: 20px; /* Para evitar que o conteúdo fique colado ao footer */
+}
+
+.header{
+  display: flex;
+  flex-flow: row;
+  justify-content:center;
+  background: white;
+  padding-top: 50px;
+}
+
+/*Centralizar class slogan*/
+.slogan{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  /*Aumentar o tamanho da fonte*/
+  font-size: 50px;
+  /*Margem do topo*/
+  margin-top: 20px;
+  /*Margem de baixo*/
+  margin-bottom: 20px;
+}
+
+/*Centralizar class loja-de-roupas*/
+.loja-de-roupas{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+
+  /*cor*/
+  color: #231281;
+
+  font-size: 70px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  /*Aplicando fonte lobster*/
+  font-family: 'Lobster', cursive;
+
+}
+
+/* Aumentar  o tamanho do paragráfo da tag p */
+p{
+  font-size: 20px;
+  /*Trocar a cor para azul escuro*/
+  color: #25186e;
+}
+
+/* Arredondar os cantos da imagem e reduzir o tamanho da mesma */
+.img-headline img {
+  border-radius: 30px;
+  width: 350px;
+  height: auto;
+  margin: 20px;
+  margin-top: -0.5em;
+}
+
+hr{
+  margin-top: 3em;
+  border: 1px solid #f3085e;
+}
+
+section {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 /* Remove o posicionamento fixo e permite que o footer fique sempre no final */
