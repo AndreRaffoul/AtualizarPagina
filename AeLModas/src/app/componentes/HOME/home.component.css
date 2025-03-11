@@ -1,4 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Garante que a página ocupe toda a altura disponível */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Permite que o conteúdo cresça e empurre o footer para baixo */
+main {
+  flex: 1;
+  padding-bottom: 20px; /* Para evitar que o conteúdo fique colado ao footer */
+}
+
+/* Remove o posicionamento fixo e permite que o footer fique sempre no final */
+footer {
+  background-image: linear-gradient(180deg, #180F4A, #090422, black);
+  text-align: center;
+  border-top: 5px solid #FF2978;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+
+/*
 
 *{
     box-sizing: border-box;
@@ -241,3 +267,5 @@ footer{
     background-color: #FF2978;
 }
 
+
+*/
