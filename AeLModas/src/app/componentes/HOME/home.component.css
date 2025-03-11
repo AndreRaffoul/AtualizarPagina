@@ -23,6 +23,59 @@ main {
   padding-top: 50px;
 }
 
+.nome-loja {
+  /* A logo do Angular na imagem utiliza um gradiente animado na fonte, criando um
+   efeito dinâmico e moderno. Esse efeito pode ser alcançado com CSS puro,
+   usando técnicas como:
+
+  ✔ background-clip: text; → Para aplicar o gradiente somente na parte da fonte.
+  ✔ -webkit-text-fill-color: transparent; → Para esconder a cor padrão da fonte e permitir a visualização do gradiente.
+  ✔ @keyframes → Para animar o gradiente e criar um efeito de movimento. */
+
+   /* Gradiente animado */
+   background: linear-gradient(90deg, #fc0176, #231281, #0c0127);
+   background-size: 300% 300%;
+
+   /* Aplicar o gradiente somente ao texto */
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+
+   /* Criar a animação do gradiente */
+   animation: animarGradiente 3s infinite linear;
+
+  /* Centralização */
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 110px;
+  height: 1.5em;
+
+  /* Encorpar mais a fonte */
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 0.5em;
+  font-family: 'Lobster', cursive;
+  color: #231281;
+
+  /* Inicialmente invisível */
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: transform 0.2s ease-out, opacity 0.2s linear;
+}
+
+@keyframes animarGradiente {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Quando a página carregar, ativa a animação */
+.aparecer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /*Centralizar class slogan*/
 .slogan{
   display: flex;
@@ -44,8 +97,8 @@ main {
   justify-content: center;
   align-items: center;
 
-  /*cor*/
-  color: #231281;
+  /* Vamos colocar um gradiente de #fc0176, #231281, #000000 */
+  color: #090422;
 
   font-size: 70px;
   margin-top: 20px;
@@ -59,14 +112,13 @@ main {
 /* Aumentar  o tamanho do paragráfo da tag p */
 p{
   font-size: 20px;
-  /*Trocar a cor para azul escuro*/
   color: #25186e;
 }
 
 /* Arredondar os cantos da imagem e reduzir o tamanho da mesma */
 .img-headline img {
   border-radius: 30px;
-  width: 350px;
+  width: 450px;
   height: auto;
   margin: 20px;
   margin-top: -0.5em;
