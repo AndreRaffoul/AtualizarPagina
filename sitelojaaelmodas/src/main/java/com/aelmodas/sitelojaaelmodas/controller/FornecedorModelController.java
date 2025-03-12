@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aelmodas.sitelojaaelmodas.model.FornecedorModel;
 import com.aelmodas.sitelojaaelmodas.service.FornecedorModelService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/fornecedor")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FornecedorModelController {
 	
 	@Autowired

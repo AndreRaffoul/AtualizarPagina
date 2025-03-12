@@ -39,13 +39,17 @@ public class WebSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     	
     	// Configuração de autenticação
-        http.csrf(csrf -> csrf.disable())        
+        http.cors().and()
+        
+        	.csrf(csrf -> csrf.disable())        
         
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))   
             
             .authorizeHttpRequests(auth -> auth.requestMatchers("/login", "/usuario/registrar").permitAll()
             		
-            		.requestMatchers("/usuario/buscarPorId/**").authenticated()
+            		.requestMatchers(
+            				"/usuario/**", "/produto/**", "/fornecedoresCadas/**", "/estoque/**", "/devedores/**"
+            		).authenticated()
             		
             		.anyRequest().authenticated())
             

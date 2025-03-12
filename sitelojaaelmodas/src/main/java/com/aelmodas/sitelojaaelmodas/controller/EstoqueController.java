@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @RestController // Alterado de @Controller para @RestController
 @RequestMapping(value = "/estoque", produces = "application/json")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EstoqueController {
 	

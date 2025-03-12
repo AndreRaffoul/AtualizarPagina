@@ -24,8 +24,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @RestController
 @RequestMapping(value = "/usuario", produces = "application/json")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@CrossOrigin(origins = "http://localhost:4200")
 public class UsuarioController {
 
 	@Autowired
