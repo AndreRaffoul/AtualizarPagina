@@ -1,0 +1,129 @@
+/* Estilo do container geral */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /*height: 100vh;*/
+}
+
+/* Nome da Loja com efeito gradiente */
+.nome-loja {
+  background: linear-gradient(90deg, #fc0176, #231281, #0c0127);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animarGradiente 3s infinite linear;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Lobster', cursive;
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: transform 0.2s ease-out, opacity 0.2s linear;
+}
+
+/* Ativação automática da animação */
+.aparecer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Caixa de login e cadastro */
+.login-box {
+  width: 35%;
+  height: auto;
+
+  /* Gradiente de fundo sentido horizontal*/
+  background: linear-gradient(45deg, #fc0176, #231281, #0c0127);
+
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animação do gradiente */
+@keyframes animarGradiente {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* Campos de entrada */
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Botões */
+.btn {
+  width: 90%;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+
+/* Botão de Login */
+.login-btn {
+  background-color: blue;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: darkblue;
+}
+
+.login-btn:active {
+  background-color: lightblue;
+}
+
+/* Botão de Cadastro */
+.sign-up-btn {
+  background-color: green;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sign-up-btn:hover {
+  background-color: darkgreen;
+}
+
+.sign-up-btn:active {
+  background-color: lightgreen;
+}
+
+/* Mensagens de erro e sucesso */
+.error-message {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+}
+
+.success-message {
+  color: lightgreen;
+  font-size: 14px;
+}
+
+/* Links */
+.options a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.options a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,40 @@
+<div class="container">
+  <!-- Nome da Loja com Efeito -->
+  <h1 class="nome-loja">A&L Modas</h1>
+
+  <!-- Se o usuário não estiver logado, exibe o login -->
+  <div *ngIf="!isLoggedIn" class="login-box">
+    <h2>Login</h2>
+
+    <!-- Mensagem de erro ao tentar login -->
+    <p class="error-message" *ngIf="isLoginFailed">Usuário ou senha incorretos! Se você não esta cadastrado em nosso sistema, cadastre-se e depois entre no sistema.</p>
+
+    <!-- Formulário de Login -->
+    <form (submit)="onLogin()">
+      <input type="text" placeholder="Login" [(ngModel)]="loginData.username" name="username" required>
+      <input type="email" placeholder="E-mail" [(ngModel)]="loginData.email" name="email" required>
+      <input type="password" placeholder="Senha" [(ngModel)]="loginData.password" name="password" required>
+
+      <!-- Usar o routerLink para redirecionar para registrar -->
+      <button class="btn login-btn" type="submit"
+      >Login</button>
+    </form>
+
+    <!-- Link para cadastro e recuperação de senha -->
+    <div class="options">
+      <p>Não tem uma conta?
+        <button class="btn sign-up-btn" (click)="toggleSignUp()"
+          [routerLink]="'/registro'">Cadastre-se
+        </button>
+      </p>
+      <p><a href="#">Esqueci minha senha</a></p>
+    </div>
+  </div>
+
+
+
+  <!-- Mensagem de sucesso após login -->
+  <div *ngIf="isLoggedIn" class="welcome-message">
+    <h2>Bem-vindo, {{ loginData.username }}!</h2>
+  </div>
+</div>
