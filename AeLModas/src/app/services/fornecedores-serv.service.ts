@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from '../../environments/environment';
 import { FornecedoresModel } from '../models/FornecedoresModel';
 
 @Injectable({
@@ -8,7 +9,10 @@ import { FornecedoresModel } from '../models/FornecedoresModel';
 })
 export class FornecedoresServService {
 
-  private urlFornecedor = 'http://localhost:8099/sitelojaaelmodas/fornecedor';
+  //private urlFornecedor = 'http://localhost:8099/sitelojaaelmodas/fornecedor';
+
+  private urlFornecedor = `${environment.apiUrl}/fornecedor`;
+
 
   constructor(
     private http: HttpClient

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { DevedorModel } from '../models/DevedorModel.model';
 
 @Injectable({
@@ -8,30 +9,30 @@ import { DevedorModel } from '../models/DevedorModel.model';
 })
 export class DevedorService {
 
-  apiDevedorUrl = 'http://localhost:8099/sitelojaaelmodas/devedor/';
+  apiDevedorUrl = `${environment.apiUrl}/devedor`;
 
   constructor(
     private http: HttpClient
   ) { }
 
   putDevedorPorId(id: number, devedor: DevedorModel): Observable<DevedorModel> {
-    return this.http.put<DevedorModel>(this.apiDevedorUrl + 'atualizarDevedor/' + id, devedor);
+    return this.http.put<DevedorModel>(this.apiDevedorUrl + '/atualizarDevedor/' + id, devedor);
   }
 
   saveDevedor(devedor: DevedorModel): Observable<DevedorModel> {
-    return this.http.post<DevedorModel>(this.apiDevedorUrl + 'salvarDevedor', devedor);
+    return this.http.post<DevedorModel>(this.apiDevedorUrl + '/salvarDevedor', devedor);
   }
 
   getDevedorPorId(id: number): Observable<DevedorModel> {
-    return this.http.get<DevedorModel>(this.apiDevedorUrl + 'buscarDevedorPorId/' + id);
+    return this.http.get<DevedorModel>(this.apiDevedorUrl + '/buscarDevedorPorId/' + id);
   }
 
   deletarDevedorId(id: number): Observable<any> {
-    return this.http.delete(this.apiDevedorUrl + 'deletarDevedor/' + id);
+    return this.http.delete(this.apiDevedorUrl + '/deletarDevedor/' + id);
   }
 
   getTodosDevedores(): Observable<DevedorModel[]> {
-    return this.http.get<DevedorModel[]>(this.apiDevedorUrl + 'buscarTodosDevedores');
+    return this.http.get<DevedorModel[]>(this.apiDevedorUrl + '/buscarTodosDevedores');
   }
 
 }

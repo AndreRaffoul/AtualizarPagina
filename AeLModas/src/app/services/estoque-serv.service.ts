@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 import { EstoqueTecidoJoinModel } from '../models/EstoqueTecidoJoin.model';
 
 @Injectable({
@@ -9,7 +10,8 @@ import { EstoqueTecidoJoinModel } from '../models/EstoqueTecidoJoin.model';
 })
 export class EstoqueServService {
 
-  urlService: string = 'http://localhost:8099/sitelojaaelmodas/estoque-tecido-join';
+  //urlService: string = 'http://localhost:8099/sitelojaaelmodas/estoque-tecido-join';
+  urlService: string = `${environment.apiUrl}/estoque-tecido-join`;
 
   constructor(
     private http: HttpClient

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 import { ProdutoModel } from '../models/ProdutoModel.model';
 
 @Injectable({
@@ -8,7 +9,9 @@ import { ProdutoModel } from '../models/ProdutoModel.model';
 })
 export class ProdutoService {
 
-  urlProdutos = 'http://localhost:8099/sitelojaaelmodas/produto';
+  //urlProdutos = 'http://localhost:8099/sitelojaaelmodas/produto';
+
+  urlProdutos: string = `${environment.apiUrl}/produto`;
 
   constructor(
     private http: HttpClient
