@@ -10,34 +10,19 @@ import { LoginComponent } from './authJWT/login/login.component';
 
 export const routes: Routes = [
 
-  // Path raiz para exibir a home
   { path: '', component: HOMEComponent },
-
   // Rota de login de usuário para autenticação JWT
   // Só será acessível se o usuário não estiver autenticado
   // E precisar cadastrar um produto, devedor, fornecedor ou estoque. Mas
   // só poderá fazer isso, se estiver autenticado no sistema e tiver um token válido
   // e tiver uma role como administrador ou gerente.
   { path:"login", component: LoginComponent },
-
-  // Rota coringa
   { path: '**', component: HOMEComponent },
-
   { path: 'home', component: HOMEComponent },
-
-  // Componente RegistroComponent
   { path: 'registro', component: LoginComponent },
-
-  // Componente FornecedoresCadasComponent
   { path: 'fornecedoresCadas', component: FornecedoresCadasComponent, canActivate: [authGuardGuard] },
-
-  // Componente FornecedoresListComponent
   { path: 'estoqueCadas', component: EstoqueComponent, canActivate: [authGuardGuard] },
-
-  // Componente CadastroDevedorComponent
   { path: 'devedorCadas', component: CadastroDevedorComponent, canActivate: [authGuardGuard] },
-
-  // Componente CadastroProdutoComponent
   { path: 'produtoCadas', component: CadastroProdutoComponent, canActivate: [authGuardGuard] },
 
 ];
