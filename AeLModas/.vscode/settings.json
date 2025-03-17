@@ -15,17 +15,33 @@
     "activityBar.inactiveForeground": "#e7e7e799",
     "commandCenter.border": "#e7e7e799",
     "sash.hoverBorder": "#1a1a1a",
-
     "statusBar.background": "#000000",
-
     "statusBar.foreground": "#e7e7e7",
     "statusBarItem.hoverBackground": "#1a1a1a",
     "statusBarItem.remoteBackground": "#000000",
     "statusBarItem.remoteForeground": "#e7e7e7",
-    "titleBar.activeBackground": "#021c85",
+    "titleBar.activeBackground": "#000000",
     "titleBar.activeForeground": "#e7e7e7",
     "titleBar.inactiveBackground": "#00000099",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-    "peacock.color": "#000000"
+    "peacock.color": "#000000",
+    "terminal.integrated.profiles.windows": {
+    "Git Bash": {
+      "path": "C:\\Program Files\\Git\\bin\\bash.exe"
+    },
+    "PowerShell": {
+      "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    "CMD": {
+      "path": "C:\\Windows\\System32\\cmd.exe"
+    },
+    "Ubuntu": {
+      "path": "C:\\Windows\\System32\\wsl.exe",
+      "args": ["-d", "Ubuntu"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
 }
+
+
