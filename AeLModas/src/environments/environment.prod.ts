@@ -8,5 +8,5 @@ export const environment = {
       apiUrl: 'http://api.aelmodas.com.br',  <<<- Exemplo de endereço de API de produção rodando na nuvem  */
 
   production: false,
-  apiUrl: 'http://api.aelmodas.com.br',
+  apiUrl: 'http://localhost:8099/sitelojaaelmodas',
 };
