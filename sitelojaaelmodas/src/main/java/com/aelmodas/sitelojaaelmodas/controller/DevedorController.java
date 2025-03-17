@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ import com.aelmodas.sitelojaaelmodas.service.DevedorService;
 @RestController
 @RequestMapping(value = "/devedor", produces = "application/json")
 @CrossOrigin(origins = "http://localhost:4200")
+@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class DevedorController {
 	
 	@Autowired
@@ -33,12 +35,13 @@ public class DevedorController {
 	    LinkedList<DevedorModel> devedores = new LinkedList<>(service.buscarTodosDevedores());
 	    return ResponseEntity.ok(devedores);
 	}
-	
+		
 	@GetMapping("/buscarDevedorPorId/{id}")
 	public ResponseEntity<DevedorModel> buscarDevedorPorId(@PathVariable Long id) {
 		return ResponseEntity.ok(service.buscarDevedorPorId(id));
 	}
 	
+	@PreAuthorize("hasAnyRole( 'ADMIN', 'MANAGER')")
 	@PostMapping("/salvarDevedor")
 	public ResponseEntity<?> salvarDevedor(@RequestBody DevedorModel devedor) {
 	    try {
@@ -51,6 +54,7 @@ public class DevedorController {
 	    }
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	@PutMapping("/atualizarDevedor/{id}")
 	public ResponseEntity<DevedorModel> atualizarDevedor(@PathVariable Long id, @RequestBody DevedorModel devedor) {
 	    DevedorModel devedorAtualizado = service.atualizarDevedorPorID(id, devedor);
@@ -58,6 +62,7 @@ public class DevedorController {
 	}
 	
 	// Método para deletar um devedor.
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	@DeleteMapping("/deletarDevedor/{id}")
 	public ResponseEntity<Object> deletarDevedor(@PathVariable Long id) {
 		boolean devedorModel = service.deletarDevedorPorID(id);

@@ -2,12 +2,17 @@ package com.aelmodas.sitelojaaelmodas.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.aelmodas.sitelojaaelmodas.AuthJWT.Role;
 import com.aelmodas.sitelojaaelmodas.AuthJWT.Usuario;
+import com.aelmodas.sitelojaaelmodas.repository.RoleRepository;
 import com.aelmodas.sitelojaaelmodas.repository.UsuarioRepository;
 
 import jakarta.transaction.Transactional;
@@ -16,11 +21,17 @@ import jakarta.transaction.Transactional;
 public class UsuarioService {
 
 	private final UsuarioRepository usuarioRepository;
-    private final PasswordEncoder passwordEncoder; // Injetar o password encoder
+    private final PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
+	private final RoleRepository roleRepository;
+
+    public UsuarioService(
+    		UsuarioRepository usuarioRepository, 
+    		PasswordEncoder passwordEncoder,
+    		RoleRepository roleRepository) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
     }
 
 	@Transactional
@@ -57,15 +68,23 @@ public class UsuarioService {
         
         usuario.setId(null);
         
+     // Criptografa a senha se não estiver criptografada
         if (!usuario.getSenha().startsWith("$2a$")) {
             usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         }
-     
+
         if (usuario.getRoles() == null || usuario.getRoles().isEmpty()) {
             usuario.setRoles(new ArrayList<>());
+        } else {
+            // Buscar as Roles no banco antes de associar ao usuário
+            List<Role> rolesValidadas = usuario.getRoles().stream()
+                .map(role -> roleRepository.findById(role.getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Role com ID " + role.getId() + " não encontrada.")))
+                .collect(Collectors.toList());
+
+            usuario.setRoles(rolesValidadas);
         }
 
-        // Se for um novo usuário, garantir que `id` seja gerado pelo banco
         return usuarioRepository.save(usuario);
     }
 
@@ -86,6 +105,10 @@ public class UsuarioService {
 	// Buscar todos os usuarios
 	public List<Usuario> buscarTodos() {
 		return usuarioRepository.findAll();
+	}
+
+	public Usuario buscarPorLogin(String login) {
+		return usuarioRepository.findByLogin(login);
 	}
 
 }

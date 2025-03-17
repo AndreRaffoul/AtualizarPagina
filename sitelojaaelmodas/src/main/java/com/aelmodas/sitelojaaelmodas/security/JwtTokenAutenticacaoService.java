@@ -64,7 +64,7 @@ public class JwtTokenAutenticacaoService {
                         .getSubject();
 
                 if (user != null) {
-                	Optional<Usuario> usuario = usuarioRepository.findByLogin(user);
+                	Optional<Usuario> usuario = Optional.empty();
                 	
                 	if (usuario.isPresent()) {
 						return new UsernamePasswordAuthenticationToken(
@@ -81,5 +81,11 @@ public class JwtTokenAutenticacaoService {
 
 		return null;
 	}
+	
+	public String gerarToken(String username) {
+	    return Jwts.builder().setSubject(username).setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+	    		.signWith(SECRET_KEY).compact();
+	}
+
 
 }

@@ -2,6 +2,7 @@ package com.aelmodas.sitelojaaelmodas.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -37,40 +38,29 @@ public class WebSecurityConfig {
     /* Configuração de autenticação */
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    	
-    	// Configuração de autenticação
-        http.cors().and()
-        
-        	.csrf(csrf -> csrf.disable())        
-        
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))   
-            
-            .authorizeHttpRequests(auth -> auth.requestMatchers("/login", "/usuario/registrar").permitAll()
-            		
-            		.requestMatchers(
-            				"/usuario/**", "/produto/**", "/fornecedoresCadas/**", "/estoque/**", "/devedores/**"
-            		).authenticated()
-            		
-            		.anyRequest().authenticated())
-            
-            .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login"))
-            
-            .addFilterBefore(jwtLoginFilter(), UsernamePasswordAuthenticationFilter.class)
-            
-            .addFilterBefore(jwtApiAutenticacaoFilter(), UsernamePasswordAuthenticationFilter.class);
+    	http
+        .cors().and()
+        .csrf(csrf -> csrf.disable())        
+        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))   
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Permite requisições OPTIONS (CORS)
+            .requestMatchers("/usuario/login", "/usuario/registrar").permitAll() // Libera o login sem autenticação
+            .requestMatchers("/usuario/**", "/produto/**", "/fornecedoresCadas/**", "/estoque/**", "/devedores/**").authenticated()
+            .anyRequest().authenticated())
+        .logout(logout -> logout.logoutSuccessUrl("/usuario/login"))
+        .addFilterBefore(jwtLoginFilter(), UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore(jwtApiAutenticacaoFilter(), UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
+    return http.build();
     }
-
-    /* Configuração de autenticação */
-    @Bean
+    
+    @Bean /* Configuração de autenticação */
     JWTLoginFilter jwtLoginFilter() throws Exception {    	
     	// Retonar o JWTLoginFilter com o caminho de login, o gerenciador de autenticação e o serviço de autenticação JWT
         return new JWTLoginFilter("/login", authenticationManager(authenticationConfiguration), jwtTokenAutenticacaoService);
     }
-
-    /* Configuração de autenticação */
-    @Bean
+    
+    @Bean /* Configuração de autenticação */
     JwtApiAutenticacaoFilter jwtApiAutenticacaoFilter() {    	
     	// Retonar o JwtApiAutenticacaoFilter com o serviço de autenticação JWT
         return new JwtApiAutenticacaoFilter(jwtTokenAutenticacaoService);
@@ -83,15 +73,13 @@ public class WebSecurityConfig {
     	// Retonar o gerenciador de autenticação
         return authenticationConfiguration.getAuthenticationManager();
     }
-
-    /* Configuração de autenticação */
-    @Bean
+    
+    @Bean /* Configuração de autenticação */
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    /* Configuração de autenticação */
-    @Bean
+    
+    @Bean /* Configuração de autenticação */
     AuthenticationProvider authenticationProvider() {
     	
     	// Retonar o provedor de autenticação

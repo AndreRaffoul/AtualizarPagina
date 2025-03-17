@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,7 @@ import com.aelmodas.sitelojaaelmodas.service.ProdutoService;
 @RestController
 @RequestMapping(value = "/produto", produces = "application/json")
 @CrossOrigin(origins = "http://localhost:4200")
+@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class ProdutoController {
 			
 	@Autowired
@@ -32,6 +34,7 @@ public class ProdutoController {
 	
 	// Método para deletar o produto do banco de dados por id
 	@DeleteMapping("/deletarProdutoPorId/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public ResponseEntity<Map<String, String>> deletarProdutoPorId(@PathVariable Long id) {
 	    Map<String, String> response = new HashMap<>();
 	    try {
@@ -49,6 +52,7 @@ public class ProdutoController {
 	
 	// Método para atualizar o produto no banco de dados obedecendo a estrutura do json
 	@PutMapping("/atualizarProdutoPorId/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public ResponseEntity<ProdutoModel> atualizarProdutoPorId( @PathVariable Long id, @Validated @RequestBody ProdutoModel produto) {
 	    try {
 	        ProdutoModel produtoAtualizado = service.atualizarProdutoPorId(id, produto);
@@ -60,6 +64,7 @@ public class ProdutoController {
 	
 	// Método para salvar o produto no banco de dados obedecendo a estrutura do json
 	@PostMapping("/salvarProduto")
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public ResponseEntity<?> salvarProduto(@Validated @RequestBody ProdutoModel produto) {
         try {
             ProdutoModel novoProduto = service.salvarProduto(produto);
