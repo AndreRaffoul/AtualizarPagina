@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { AuthUser } from '../models/auth-user.models';
 
 @Injectable({
   providedIn: 'root'
@@ -9,28 +9,58 @@ import { AuthUser } from '../models/auth-user.models';
 export class AuthService {
 
   // Chamando o environment para pegar a URL da API
-  apiAuthUrl = `${environment.apiUrl}/auth`;
-  private auth = new AuthUser(0, '', '', '', '', [])
+  apiAuthUrl = `${environment.apiUrl}/usuario/login`;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  // Guardando o estado do usuário
+  private authStatus = new BehaviorSubject<boolean>(this.isAuthenticated());
 
-  getLogin() { return this.http.get<AuthUser>(this.apiAuthUrl + '/login'); }
-  getLoginId(id: number) { return this.http.get<AuthUser>(this.apiAuthUrl + '/login/' + id); }
+  constructor( private http: HttpClient ) { }
 
-  postLogin(auth: AuthUser) {
-    return this.http.post<AuthUser>(this.apiAuthUrl + '/login', auth);
+  login(auth: { login: string, senha: string }): Observable<{ Authorization: string }> {
+    return this.http.post<{ Authorization: string }>(this.apiAuthUrl, auth).pipe(
+      tap(response => {
+        if (response && response.Authorization) {
+          localStorage.setItem('token', response.Authorization); // Armazena o token
+          this.authStatus.next(true); // Atualiza o estado do usuário
+        }
+      })
+    );
   }
 
-  putLoginId(id: number, auth: AuthUser) {
-    return this.http.put<AuthUser>(this.apiAuthUrl + '/login/' + id, auth);
+  logout(): void {
+    localStorage.removeItem('token'); // Remove o token
+    this.authStatus.next(false); // Atualiza o estado do usuário
   }
 
-  deleteLoginId(id: number) {
-    return this.http.delete(this.apiAuthUrl + '/login/' + id);
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 
-  
+  isAuthenticated(): boolean {
+    return this.hasValidToken();
+  }
+
+  getAuthStatus(): Observable<boolean> {
+    return this.authStatus.asObservable();
+  }
+
+  private hasValidToken(): boolean {
+    const token = this.getToken();
+    return token !== null && token !== ''; // Verifica se há token válido
+  }
+
+  // Retorna as roles do usuário
+  getRoles(): string[] {
+    const token = this.getToken();
+    if (!token) {
+      return [];
+    }
+
+    const payload = token.split('.')[1];
+    const decodedPayload = atob(payload);
+    const roles = JSON.parse(decodedPayload).roles;
+
+    return roles;
+  }
 
 }

@@ -15,11 +15,18 @@
     <button mat-button>Sobre nós</button>
     <button mat-button>Contato</button>
 
-    <button mat-button [routerLink]="'/fornecedoresCadas'">Fornecedores</button>
-    <button mat-button [routerLink]="'/estoqueCadas'">Estoques</button>
-    <button mat-button [routerLink]="'/produtoCadas'">Produtos</button>
-    <button mat-button [routerLink]="'/devedorCadas'">Devedores</button>
+    <ng-container *ngIf="isLoggedIn">
+      <button mat-button [routerLink]="'/fornecedoresCadas'">Fornecedores</button>
+      <button mat-button [routerLink]="'/estoqueCadas'">Estoques</button>
+      <button mat-button [routerLink]="'/produtoCadas'">Produtos</button>
+      <button mat-button [routerLink]="'/devedorCadas'">Devedores</button>
+    </ng-container>
 
-    <button mat-button [routerLink]="'/login'">Login</button>
+    <!-- Mostrar botão de login apenas se o usuário NÃO estiver autenticado -->
+    <button mat-button *ngIf="!isLoggedIn" [routerLink]="'/login'">Login</button>
+
+    <!-- Mostrar botão de logout apenas se o usuário ESTIVER autenticado -->
+    <button mat-button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+
   </div>
 </div>

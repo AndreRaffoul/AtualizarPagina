@@ -1,22 +1,26 @@
-import { HttpEvent, HttpHandler, HttpInterceptor,
-  HttpRequest, } from '@angular/common/http';
+import {
+  HttpEvent, HttpHandler, HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({providedIn: 'root'})
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Obtém o token armazenado no LocalStorage ou SessionStorage
-    const token = localStorage.getItem('token'); // ou sessionStorage.getItem('token');
-
-    if (token) {// Clona a requisição e adiciona o cabeçalho de autorização
-      const clonedRequest = request.clone({
-        setHeaders: { Authorization: `Bearer ${token}` }
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = this.authService.getToken();
+    if (token) {
+      const cloned = req.clone({
+        setHeaders: { Authorization: token } // O backend já espera "Bearer <token>"
       });
-      return next.handle(clonedRequest);
+      return next.handle(cloned);
     }
-    return next.handle(request);
+    return next.handle(req);
   }
+
 }
+
+
