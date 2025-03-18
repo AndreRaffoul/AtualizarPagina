@@ -1,82 +1,63 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-
-    // CommonModule, RouterModule,
     CommonModule,
     RouterModule,
-    //ngModel
     FormsModule,
-
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements AfterViewInit {
 
+  loginData = { login: '', senha: '' };
+  isLoggedIn = false;
+  isLoginFailed = false;
 
   constructor(
+    private authService: AuthService,
     private router: Router,
   ) { }
 
-  isLoggedIn = false;
-  isLoginFailed = false;
-  isSignUp = false;
-  isSignUpFailed = false;
-  isSignUpSuccessful = false;
-
-  loginData = {
-    username: '',
-    email: '',
-    password: ''
-  };
-
-  signUpData = {
-    name: '',
-    email: '',
-    password: ''
-  };
+  onLogin( event: Event ): void {
+    event.preventDefault();
+    this.authService.login(this.loginData).subscribe({
+      next: () => {
+        this.isLoggedIn = true;
+        this.isLoginFailed = false;
+        this.router.navigate(['/home']);
+      },
+      error: () => {
+        this.isLoginFailed = true;
+      }
+    });
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
       const nomeLoja = document.querySelector('.nome-loja');
       if (nomeLoja) {
-        nomeLoja.classList.add('aparecer'); // Ativa a animação
+        nomeLoja.classList.add('aparecer');
       }
     }, 500);
   }
 
-  onLogin() {
-    if (this.loginData.email === 'admin@teste.com' && this.loginData.password === '123456') {
-      this.isLoggedIn = true;
-      this.isLoginFailed = false;
-    } else {
-      this.isLoginFailed = true;
-    }
-  }
-
-  onSignUp() {
-    if (this.signUpData.email && this.signUpData.password) {
-      this.isSignUpSuccessful = true;
-      this.isSignUpFailed = false;
-    } else {
-      this.isSignUpFailed = true;
-    }
-  }
-
-  toggleSignUp() {
-    this.isSignUp = !this.isSignUp;
-  }
-
   navigateToRegister() {
     this.router.navigate(['/registro']);
+  }
+
+  toggleSignUp(){
+    const signUp = document.querySelector('.sign-up');
+    if (signUp) {
+      signUp.classList.toggle('active');
+    }
   }
 
 }

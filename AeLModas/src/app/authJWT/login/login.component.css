@@ -9,14 +9,14 @@
 
 /* Nome da Loja com efeito gradiente */
 .nome-loja {
-  background: linear-gradient(90deg, #fc0176, #231281, #0c0127);
+  background: linear-gradient(90deg, #fc0176, #231281, #270101);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: animarGradiente 3s infinite linear;
   font-size: 50px;
   font-weight: bold;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   margin-bottom: 30px;
   opacity: 0;
   transform: translateX(-20px);
@@ -35,7 +35,7 @@
   height: auto;
 
   /* Gradiente de fundo sentido horizontal*/
-  background: linear-gradient(45deg, #fc0176, #231281, #0c0127);
+  background: linear-gradient(45deg, #fc0176, #231281, #270101);
 
   color: white;
   padding: 20px;
@@ -46,11 +46,16 @@
 
 /* Animação do gradiente */
 @keyframes animarGradiente {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
 
 /* Campos de entrada */
 input {
