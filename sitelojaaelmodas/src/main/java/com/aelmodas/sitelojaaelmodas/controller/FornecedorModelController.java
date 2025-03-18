@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +22,14 @@ import com.aelmodas.sitelojaaelmodas.service.FornecedorModelService;
 @RestController
 @RequestMapping("/fornecedor")
 @CrossOrigin(origins = "http://localhost:4200")
+@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class FornecedorModelController {
 	
 	@Autowired
 	private FornecedorModelService fornecedorService;
 	
 	@PostMapping("/salvar")
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public ResponseEntity<FornecedorModel> salvarFornecedor(
 			@RequestBody FornecedorModel fornecedor) {
 		FornecedorModel fornecedorModel = fornecedorService.salvarFornecedor(fornecedor);
@@ -34,6 +37,7 @@ public class FornecedorModelController {
 	}
 	
 	@PutMapping("/atualizar/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public ResponseEntity<FornecedorModel> atualizarFornecedor( 
 			@PathVariable Long id, @RequestBody FornecedorModel fornecedor) {		
 		FornecedorModel fornecedorModel = fornecedorService.atualizarFornecedorPorID(id, fornecedor);
@@ -44,6 +48,7 @@ public class FornecedorModelController {
 	}
 	
 	@DeleteMapping("/deletar/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public ResponseEntity<Object> deletarFornecedor(@PathVariable Long id) {
 		boolean fornecedorModel = fornecedorService.deletarFornecedorPorID(id);
 		if (!fornecedorModel) {

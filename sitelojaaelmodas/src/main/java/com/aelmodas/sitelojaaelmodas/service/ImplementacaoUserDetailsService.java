@@ -22,21 +22,22 @@ public class ImplementacaoUserDetailsService implements UserDetailsService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		Usuario usuario = usuarioRepository.findByLogin(username)
-				.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + username));
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //Usuario usuario = usuarioRepository.findByLogin(username)
+                //.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + username));
 
-		if (usuario == null) {
-			throw new UsernameNotFoundException("Usuário não encontrado");
-		}
-
-		return User.builder()
-				.username(usuario.getLogin())
-	            .password(usuario.getSenha())
-	            .authorities(usuario.getAuthorities()) // Certifique-se de que `getAuthorities()` retorna uma coleção válida
-	            .build();
-	}
+    	Usuario usuario = usuarioRepository.findByLogin(username);
+        
+        if (usuario == null) {
+            throw new UsernameNotFoundException("Usuário não encontrado: " + username);
+        }
+    	
+        return User.builder()
+                .username(usuario.getLogin())
+                .password(usuario.getSenha()) // Senha já deve estar criptografada no banco
+                .authorities(usuario.getAuthorities()) // Mantém o mapeamento correto das roles
+                .build();
+    }
 
 }

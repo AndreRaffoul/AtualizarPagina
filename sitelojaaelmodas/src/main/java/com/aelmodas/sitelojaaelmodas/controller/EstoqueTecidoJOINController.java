@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +25,14 @@ import com.aelmodas.sitelojaaelmodas.service.EstoqueTecidoJOINService;
 @RestController
 @RequestMapping("/estoque-tecido-join")
 @CrossOrigin(origins = "http://localhost:4200")
+@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class EstoqueTecidoJOINController {
 	
 	@Autowired
 	private EstoqueTecidoJOINService estoqueTecidoJOINService;
 	
 	// 🔹 Método para salvar um único objeto
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @PostMapping(value = "/salvar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EstoqueTecidoJoin> salvar(@RequestBody EstoqueTecidoJoin estoqueTecidoJoin) {
         EstoqueTecidoJoin salvo = estoqueTecidoJOINService.salvar(estoqueTecidoJoin);
@@ -37,6 +40,7 @@ public class EstoqueTecidoJOINController {
     }
 
     // 🔹 Método para salvar uma lista de objetos
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @PostMapping(value = "/salvarTodos", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<EstoqueTecidoJoin>> salvarTodos(@RequestBody List<EstoqueTecidoJoin> estoqueTecidoList) {
         List<EstoqueTecidoJoin> salvos = estoqueTecidoJOINService.salvarTodos(estoqueTecidoList);
@@ -56,12 +60,14 @@ public class EstoqueTecidoJOINController {
                             .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @DeleteMapping("deletarPorID/{id}")
     public ResponseEntity<Void> deletarPorId(@PathVariable Long id) {
         estoqueTecidoJOINService.deletarPorId(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @PutMapping("/atualizarEstoquePorId/{id}")
 	public ResponseEntity<EstoqueTecidoJoin> atualizarEstoquePorId(@PathVariable Long id,
 			@RequestBody EstoqueTecidoJoin estoqueTecidoJoin) {

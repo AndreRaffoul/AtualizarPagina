@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +22,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @RequestMapping(value = "/estoque", produces = "application/json")
 @CrossOrigin(origins = "http://localhost:4200")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class EstoqueController {
 	
 	@Autowired
 	private EstoqueService service;
 
-	// Método para buscar todos os produtos do estoque.
+	// Método para buscar todos os produtos do estoque.	
 	@GetMapping("/buscarTodosNoEstoque")
 	public ResponseEntity<List<EstoqueModel>> buscarTodosProdutos() {
 		return ResponseEntity.ok(service.buscarTodosProdutos());
@@ -40,18 +42,21 @@ public class EstoqueController {
 	
 	// Método para salvar um produto no estoque.
 	@PostMapping("/salvarProdutosEstoque")
+	@PreAuthorize("hasAnyRole( 'ADMIN', 'MANAGER')")
 	public ResponseEntity<EstoqueModel> salvarProdutoEstoque(@RequestBody EstoqueModel estoque) {
 		return ResponseEntity.ok(service.salvarProdutoEstoque(estoque));
 	}	
 		
 	// Método para deletar um produto por id.
 	@GetMapping("/deletarProdutoPorId/{id}")
+	@PreAuthorize("hasAnyRole( 'ADMIN', 'MANAGER')")
 	public ResponseEntity<EstoqueModel> deletarProdutoPorId(@PathVariable Long id) {
 		return ResponseEntity.ok(service.deletarProdutoPorId(id));
 	}
 	
 	// Método para atualizar um produto por id.
 	@PutMapping("/atualizarProdutoPorId/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
 	public ResponseEntity<EstoqueModel> atualizarProdutoPorId(@PathVariable Long id,
 			@RequestBody EstoqueModel estoque) {
 		EstoqueModel atualizado = service.atualizarProdutoPorId(id, estoque);

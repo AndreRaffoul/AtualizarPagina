@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aelmodas.sitelojaaelmodas.AuthJWT.Usuario;
+import com.aelmodas.sitelojaaelmodas.security.JwtTokenAutenticacaoService;
 import com.aelmodas.sitelojaaelmodas.service.UsuarioService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -26,10 +27,31 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @RequestMapping(value = "/usuario", produces = "application/json")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @CrossOrigin(origins = "http://localhost:4200")
+@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class UsuarioController {
 
 	@Autowired
 	private UsuarioService service;
+	
+	@Autowired
+	private JwtTokenAutenticacaoService jwtTokenAutenticacaoService;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	@PostMapping("/login")
+	@CrossOrigin(origins = "http://localhost:4200") // Permite chamadas do Angular
+	public ResponseEntity<?> autenticarUsuario(@RequestBody Usuario usuario) {
+	    Usuario usuarioExistente = service.buscarPorLogin(usuario.getLogin());
+
+	    if (usuarioExistente == null || !passwordEncoder.matches(usuario.getSenha(), usuarioExistente.getSenha())) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login ou senha inválidos.");
+	    }
+
+	    String token = jwtTokenAutenticacaoService.gerarToken(usuarioExistente.getLogin());
+	    return ResponseEntity.ok().body("{\"Authorization\": \"" + token + "\"}");
+	}
+
 
 	@PutMapping("/atualizarPorId/{id}")
 	public ResponseEntity<Usuario> atualizarPorId(@PathVariable  Long id, @RequestBody Usuario usuario) {
