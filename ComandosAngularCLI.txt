@@ -6,3 +6,27 @@ ng g c componentes/estoque/listagem/estoqueList.component
 
 - Criando um projeto java para backend
 https://start.spring.io/
+
+
+## Estrutura de dados json para salvar no banco e fazer autorização e autenticação de usuários
+
+
+{
+  "login": "Raffoul",
+  "email": "usuario@example.com",
+  "senha": "RaffoulSenhaSegura",
+  "roles": [
+    {
+      "id": 1,
+      "nome": "ROLE_USER"
+    },
+    {
+      "id": 2,
+      "nome": "ROLE_ADMIN"
+    },
+    {
+      "id": 2,
+      "nome": "ROLE_MANAGER"
+    }
+  ]
+}
