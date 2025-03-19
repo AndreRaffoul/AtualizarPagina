@@ -1,0 +1,15 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+.container {
+  margin-top: 50px;
+}
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
