@@ -61,8 +61,7 @@ public class ProdutoModel implements Serializable {
     @JoinTable(name = "produto_fornecedor",
                joinColumns = @JoinColumn(name = "produto_id"),
                inverseJoinColumns = @JoinColumn(name = "fornecedor_id"))
-	@JsonManagedReference
-	
+	@JsonManagedReference	
 	private List<FornecedorModel> forneceModelList;
 	
 	public ProdutoModel() {}
