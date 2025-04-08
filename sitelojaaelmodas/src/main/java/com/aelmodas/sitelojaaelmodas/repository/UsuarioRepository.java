@@ -13,7 +13,7 @@ import com.aelmodas.sitelojaaelmodas.AuthJWT.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
         
 	@Query("SELECT u FROM Usuario u WHERE u.login = ?1")
-	Usuario findByLogin(String login);
+	Optional<Usuario> findByLogin(String login);
     
     Usuario findByEmail(String email);
     

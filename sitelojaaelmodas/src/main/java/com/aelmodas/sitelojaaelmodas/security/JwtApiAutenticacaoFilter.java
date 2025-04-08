@@ -11,6 +11,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+
 
 public class JwtApiAutenticacaoFilter extends GenericFilterBean {
 	
@@ -35,4 +38,35 @@ public class JwtApiAutenticacaoFilter extends GenericFilterBean {
         chain.doFilter(request, response);
     }
 
+	//@Override
+    protected void doFilterInternal(HttpServletRequest request, 
+    		HttpServletResponse response, 
+    		FilterChain filterChain)
+			throws ServletException, IOException {
+
+    	System.out.println("[ FILTRO ] Interceptando requisição: " + request.getRequestURI());
+    	
+    	// Verifica se já existe uma autenticação
+    	if ( SecurityContextHolder.getContext().getAuthentication() == null ) {
+    		
+    		Authentication authentication = jwtTokenAutenticacaoService.getAuthentication(request);
+    		
+    		if ( authentication != null ) {
+
+    			System.out.println("[ FILTRO ] Autenticação encontrada: " + authentication.getName());
+    			
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+			} else {
+				System.out.println( " [ FILTRO ] Token inválido ou usuario não encontrado." );
+			}
+    		
+    	} else {
+			System.out.println( " [ FILTRO ] Autenticação já existe: " + SecurityContextHolder.getContext().getAuthentication().getName() );
+		}
+		
+		// Continua o fluxo da requisição
+		filterChain.doFilter(request, response);   	
+    	
+	}
+	
 }

@@ -13,7 +13,6 @@ export class FornecedoresServService {
 
   private urlFornecedor = `${environment.apiUrl}/fornecedor`;
 
-
   constructor(
     private http: HttpClient
   ) { }
@@ -46,7 +45,7 @@ export class FornecedoresServService {
   }
 
   deletarFornecedorPorId(id: number): Observable<FornecedoresModel> {
-   return this.http.delete<FornecedoresModel>(this.urlFornecedor + '/deletar/' + id);
+    return this.http.delete<FornecedoresModel>(this.urlFornecedor + '/deletar/' + id);
   }
 
 }

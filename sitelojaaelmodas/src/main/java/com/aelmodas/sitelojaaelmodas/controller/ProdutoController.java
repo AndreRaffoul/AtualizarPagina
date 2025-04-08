@@ -26,7 +26,6 @@ import com.aelmodas.sitelojaaelmodas.service.ProdutoService;
 @RestController
 @RequestMapping(value = "/produto", produces = "application/json")
 @CrossOrigin(origins = "http://localhost:4200")
-@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class ProdutoController {
 			
 	@Autowired

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthInterceptorService implements HttpInterceptor {
   constructor(private authService: AuthService) { }
 
@@ -14,7 +14,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     const token = this.authService.getToken();
     if (token) {
       const cloned = req.clone({
-        setHeaders: { Authorization: token } // O backend já espera "Bearer <token>"
+        setHeaders: { Authorization: `Bearer ${token}` } // O backend já espera "Bearer <token>"
       });
       return next.handle(cloned);
     }

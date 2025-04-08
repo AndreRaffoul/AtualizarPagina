@@ -45,40 +45,42 @@ public class JwtTokenAutenticacaoService {
 				.signWith(SECRET_KEY).compact(); 
 
 		String token = TOKEN_PREFIX + " " + JWT; // Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiJ9.5
-		response.addHeader(HEADER_STRING, token); // Adiciona no cabeçalho http de resposta
+		response.addHeader(HEADER_STRING, token);
 
-		// Escreve token como resposta no corpo do http
 		response.getWriter().write("{\"Authorization\": \"" + token + "\"}");
 	}
 
 	public Authentication getAuthentication(HttpServletRequest request) {
 		String token = request.getHeader(HEADER_STRING);
+		
+		System.out.println("🔍 [TokenService] Token recebido: " + token);
 
-        if (token != null) {
+        if (token != null && token.startsWith(TOKEN_PREFIX + " ")) {
+        	
             try {
             	String user = Jwts.parserBuilder()
-                        .setSigningKey(SECRET_KEY)
-                        .build()
-                        .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-                        .getBody()
-                        .getSubject();
-
-                if (user != null) {
-                	Optional<Usuario> usuario = Optional.empty();
+                        .setSigningKey(SECRET_KEY).build()
+                        .parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody().getSubject();
+            	
+            	System.out.println("📛 [TokenService] Usuário do token: " + user);
+            	
+                if (user != null && !user.isEmpty()) {
+                	
+                	Optional<Usuario> usuario = usuarioRepository.findByLogin(user);
                 	
                 	if (usuario.isPresent()) {
-						return new UsernamePasswordAuthenticationToken(
-								usuario.get().getLogin(), 
-								usuario.get().getSenha(), 
-								usuario.get().getAuthorities());
-					}
-
-                }
+                		
+                		System.out.println("🧠 [TokenService] Usuário autenticado: " + usuario.get().getLogin());
+                		
+                	    return new UsernamePasswordAuthenticationToken(usuario.get(), null, usuario.get().getAuthorities());
+                	} else {
+                        System.out.println("❌ [TokenService] Usuário não encontrado no banco");
+                    }
+                }   
             } catch (Exception e) {
-				return null;
+            	System.out.println("⚠️ [TokenService] Erro ao validar token: " + e.getMessage());
 			}
         }
-
 		return null;
 	}
 	

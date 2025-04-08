@@ -3,6 +3,7 @@ package com.aelmodas.sitelojaaelmodas.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -33,7 +34,8 @@ public class FornecedorModel implements Serializable{
 	
 	// Lista de ProdutoModel
 	@ManyToMany(mappedBy = "forneceModelList", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("forneceModelList")
+	@JsonBackReference
+	@JsonIgnoreProperties("forneceModelList")
     private List<ProdutoModel> produtoModelList;
 	
 	public FornecedorModel() {}

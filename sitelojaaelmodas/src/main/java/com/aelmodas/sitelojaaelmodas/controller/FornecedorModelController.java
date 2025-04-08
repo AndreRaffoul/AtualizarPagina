@@ -22,7 +22,6 @@ import com.aelmodas.sitelojaaelmodas.service.FornecedorModelService;
 @RestController
 @RequestMapping("/fornecedor")
 @CrossOrigin(origins = "http://localhost:4200")
-@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class FornecedorModelController {
 	
 	@Autowired
@@ -69,6 +68,12 @@ public class FornecedorModelController {
 	@GetMapping("/buscarTodos")
 	public ResponseEntity<List<FornecedorModel>> buscarTodosFornecedores() {
 		List<FornecedorModel> fornecedores = fornecedorService.buscarTodosFornecedores();
+		
+		System.out.println("### FORNECEDORES ENVIADOS PARA O FRONT: " + fornecedores);
+		fornecedores.forEach(fornecedor -> {
+			System.out.println("Fornecedor: " + fornecedor.getNomeFornecedor());
+		});
+		
 		return ResponseEntity.ok(fornecedores);
 	}
 	

@@ -19,11 +19,12 @@ import { FornecedoresServService } from '../../../../services/fornecedores-serv.
   styleUrl: './fornecedores-list.component.css',
   providers: [FornecedoresServService]
 })
-export class FornecedoresListComponent implements OnInit{
+export class FornecedoresListComponent implements OnInit {
 
   @Output() fornecedorSelecionado = new EventEmitter<number>();
 
-  displayedColumns: string[] = ['nomeFornecedor', 'cnpj', 'email', 'cidade', 'cep', 'editar', 'deletar'];
+  displayedColumns: string[] = ['nomeFornecedor', 'cnpj',
+    'email', 'cidade', 'cep', 'editar', 'deletar'];
   dataSource: any[] = [];
 
   novoFornecedor: FornecedoresModel = new FornecedoresModel(0, '', '', '', '', '', '', '', '');
@@ -45,7 +46,7 @@ export class FornecedoresListComponent implements OnInit{
   }
 
   editarFornecedor(id: number): void {
-    if(id || id > 0 || id !== null || Number.isNaN(id)) {
+    if (id || id > 0 || id !== null || Number.isNaN(id)) {
       console.log(`ID emitido para edição: ${id}`);
       this.fornecedorSelecionado.emit(id);
     } else {
@@ -55,11 +56,11 @@ export class FornecedoresListComponent implements OnInit{
   }
 
   deletarFornecedor(id: number): void {
-    if(confirm("Tem certeza que deseja deletar este fornecedor?")) {
+    if (confirm("Tem certeza que deseja deletar este fornecedor?")) {
       this.fornecedoresServService.deletarFornecedorPorId(id).subscribe(() => {
         this.carregarFornecedores();
       });
     }
-  } 
+  }
 
 }

@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @RequestMapping(value = "/estoque", produces = "application/json")
 @CrossOrigin(origins = "http://localhost:4200")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class EstoqueController {
 	
 	@Autowired

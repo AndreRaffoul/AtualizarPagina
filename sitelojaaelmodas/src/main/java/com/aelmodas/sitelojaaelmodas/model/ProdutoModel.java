@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -56,10 +57,12 @@ public class ProdutoModel implements Serializable {
     @JsonIgnoreProperties("produtoModel")
 	private List<EstoqueModel> estoqueModelList;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
     @JoinTable(name = "produto_fornecedor",
                joinColumns = @JoinColumn(name = "produto_id"),
                inverseJoinColumns = @JoinColumn(name = "fornecedor_id"))
+	@JsonManagedReference
+	
 	private List<FornecedorModel> forneceModelList;
 	
 	public ProdutoModel() {}

@@ -25,7 +25,6 @@ import com.aelmodas.sitelojaaelmodas.service.EstoqueTecidoJOINService;
 @RestController
 @RequestMapping("/estoque-tecido-join")
 @CrossOrigin(origins = "http://localhost:4200")
-@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class EstoqueTecidoJOINController {
 	
 	@Autowired

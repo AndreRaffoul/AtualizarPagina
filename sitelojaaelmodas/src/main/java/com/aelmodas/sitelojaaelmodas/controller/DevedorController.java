@@ -24,7 +24,6 @@ import com.aelmodas.sitelojaaelmodas.service.DevedorService;
 @RestController
 @RequestMapping(value = "/devedor", produces = "application/json")
 @CrossOrigin(origins = "http://localhost:4200")
-@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class DevedorController {
 	
 	@Autowired

@@ -107,7 +107,7 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 
-	public Usuario buscarPorLogin(String login) {
+	public Optional<Usuario> buscarPorLogin(String login) {
 		return usuarioRepository.findByLogin(login);
 	}
 

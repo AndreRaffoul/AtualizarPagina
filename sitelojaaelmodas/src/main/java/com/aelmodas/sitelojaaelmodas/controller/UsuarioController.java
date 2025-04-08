@@ -27,7 +27,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @RequestMapping(value = "/usuario", produces = "application/json")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @CrossOrigin(origins = "http://localhost:4200")
-@PreAuthorize("hasAnyRole('USER', 'ADMIN', 'MANAGER')")
 public class UsuarioController {
 
 	@Autowired
@@ -42,13 +41,13 @@ public class UsuarioController {
 	@PostMapping("/login")
 	@CrossOrigin(origins = "http://localhost:4200") // Permite chamadas do Angular
 	public ResponseEntity<?> autenticarUsuario(@RequestBody Usuario usuario) {
-	    Usuario usuarioExistente = service.buscarPorLogin(usuario.getLogin());
+		Optional<Usuario> usuarioExistente = service.buscarPorLogin(usuario.getLogin());
 
-	    if (usuarioExistente == null || !passwordEncoder.matches(usuario.getSenha(), usuarioExistente.getSenha())) {
+	    if (usuarioExistente.isEmpty() || !passwordEncoder.matches(usuario.getSenha(), usuarioExistente.get().getSenha())) {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login ou senha inválidos.");
 	    }
 
-	    String token = jwtTokenAutenticacaoService.gerarToken(usuarioExistente.getLogin());
+	    String token = jwtTokenAutenticacaoService.gerarToken(usuarioExistente.get().getLogin());
 	    return ResponseEntity.ok().body("{\"Authorization\": \"" + token + "\"}");
 	}
 

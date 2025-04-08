@@ -1,5 +1,7 @@
 package com.aelmodas.sitelojaaelmodas.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,20 +26,17 @@ public class ImplementacaoUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //Usuario usuario = usuarioRepository.findByLogin(username)
-                //.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + username));
 
-    	Usuario usuario = usuarioRepository.findByLogin(username);
+    	Optional<Usuario> usuarioOptional = usuarioRepository.findByLogin(username);
         
-        if (usuario == null) {
-            throw new UsernameNotFoundException("Usuário não encontrado: " + username);
-        }
-    	
-        return User.builder()
-                .username(usuario.getLogin())
-                .password(usuario.getSenha()) // Senha já deve estar criptografada no banco
-                .authorities(usuario.getAuthorities()) // Mantém o mapeamento correto das roles
-                .build();
+    	Usuario usuario = usuarioOptional.orElseThrow(() ->
+        new UsernameNotFoundException("Usuário não encontrado: " + username));
+
+	    return User.builder()
+	            .username(usuario.getLogin())
+	            .password(usuario.getSenha())
+	            .authorities(usuario.getAuthorities())
+	            .build();
     }
 
 }

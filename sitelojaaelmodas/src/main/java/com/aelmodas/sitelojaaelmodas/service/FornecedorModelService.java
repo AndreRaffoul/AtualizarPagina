@@ -14,12 +14,10 @@ public class FornecedorModelService {
 	@Autowired
 	private FornecedorModelRepository fornecedorRepository;
 	
-	// Salvar fornecedor
 	public FornecedorModel salvarFornecedor(FornecedorModel fornecedor) {
 		return fornecedorRepository.save(fornecedor);
 	}
 	
-	// Atualizar fornecedor
 	public FornecedorModel atualizarFornecedorPorID(Long id, FornecedorModel fornecedor) {
         return fornecedorRepository.findById(id).map(existingFornecedor -> {
         	existingFornecedor.setId(fornecedor.getId());
@@ -33,10 +31,9 @@ public class FornecedorModelService {
             existingFornecedor.setCnpj(fornecedor.getCnpj());
             // Salva o fornecedor atualizado
             return fornecedorRepository.save(existingFornecedor);
-        }).orElse(null); // Retorna null se o fornecedor não for encontrado
+        }).orElse(null);
 	}
 	
-	// Deletar fornecedor
 	public boolean deletarFornecedorPorID(Long id) {
 		if (fornecedorRepository.existsById(id)) {
 			fornecedorRepository.deleteById(id);
@@ -45,14 +42,15 @@ public class FornecedorModelService {
 		return false;
 	}
 	
-	// Buscar fornecedor por id
 	public FornecedorModel buscarFornecedorPorId(Long id) {
 		return fornecedorRepository.findById(id).orElse(null);
 		 
 	}
 	
-	// Buscar todos os fornecedores
 	public List<FornecedorModel> buscarTodosFornecedores() {
+		
+		System.out.println("🔍 [FornecedorModelService] Buscando todos os fornecedores..." );
+		
 		return fornecedorRepository.findAll();
 	}
 
